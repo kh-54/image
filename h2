@@ -1,0 +1,69 @@
+# profile-title: AI-US
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+
+ipv6: false
+
+tun:
+  enable: true
+  stack: mixed
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+
+dns:
+  enable: true
+  ipv6: false
+
+  listen: 0.0.0.0:1053
+
+  enhanced-mode: fake-ip
+
+  fake-ip-range: 198.18.0.1/16
+
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+
+  nameserver:
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+
+  proxy-server-nameserver:
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+
+  direct-nameserver:
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+
+proxies:
+  - name: us
+    type: hysteria2
+
+    server: 216.167.71.218
+    port: 6443
+
+    password: 16888888
+
+    sni: 216.167.71.218
+
+    obfs: salamander
+    obfs-password: 16888888
+
+    skip-cert-verify: true
+
+proxy-groups:
+  - name: Proxy
+    type: select
+    proxies:
+      - us
+      - DIRECT
+
+rules:
+  - GEOSITE,cn,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,Proxy
