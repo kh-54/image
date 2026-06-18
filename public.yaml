@@ -1,0 +1,7714 @@
+port: 7890
+socks-port: 7891
+allow-lan: false
+mode: rule
+log-level: info
+geodata-mode: true
+geo-auto-update: true
+geodata-loader: standard
+geo-update-interval: 24
+geox-url:
+  geoip: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat
+  geosite: >-
+    https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat
+  mmdb: >-
+    https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb
+  asn: >-
+    https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb
+rule-providers:
+  category-ai-!cn:
+    type: http
+    format: mrs
+    behavior: domain
+    url: >-
+      https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs
+    path: ./ruleset/category-ai-!cn.mrs
+    interval: 86400
+  youtube:
+    type: http
+    format: mrs
+    behavior: domain
+    url: >-
+      https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/youtube.mrs
+    path: ./ruleset/youtube.mrs
+    interval: 86400
+  google:
+    type: http
+    format: mrs
+    behavior: ipcidr
+    url: >-
+      https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.mrs
+    path: ./ruleset/google.mrs
+    interval: 86400
+  geolocation-cn:
+    type: http
+    format: mrs
+    behavior: domain
+    url: >-
+      https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/geolocation-cn.mrs
+    path: ./ruleset/geolocation-cn.mrs
+    interval: 86400
+  cn:
+    type: http
+    format: mrs
+    behavior: ipcidr
+    url: >-
+      https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/cn.mrs
+    path: ./ruleset/cn.mrs
+    interval: 86400
+  github:
+    type: http
+    format: mrs
+    behavior: domain
+    url: >-
+      https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/github.mrs
+    path: ./ruleset/github.mrs
+    interval: 86400
+  gitlab:
+    type: http
+    format: mrs
+    behavior: domain
+    url: >-
+      https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/gitlab.mrs
+    path: ./ruleset/gitlab.mrs
+    interval: 86400
+  geolocation-!cn:
+    type: http
+    format: mrs
+    behavior: domain
+    url: >-
+      https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/geolocation-!cn.mrs
+    path: ./ruleset/geolocation-!cn.mrs
+    interval: 86400
+  private:
+    type: http
+    format: mrs
+    behavior: ipcidr
+    url: >-
+      https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/private.mrs
+    path: ./ruleset/private.mrs
+    interval: 86400
+  telegram:
+    type: http
+    format: mrs
+    behavior: ipcidr
+    url: >-
+      https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/telegram.mrs
+    path: ./ruleset/telegram.mrs
+    interval: 86400
+dns:
+  enable: true
+  ipv6: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  nameserver:
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
+  proxy-server-nameserver:
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
+  nameserver-policy:
+    geosite:cn,private:
+      - https://120.53.53.53/dns-query
+      - https://223.5.5.5/dns-query
+    geosite:geolocation-!cn:
+      - https://dns.cloudflare.com/dns-query
+      - https://dns.google/dns-query
+proxies:
+  - name: 魔法节点 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 86a271741c1511a4
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 魔法节点 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: efcb122b5bcf7ada
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 优选(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 856e699eb4c36c60
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 优选(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 0e6eb79cadfe1224
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 01(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 6b7c4902c5180717
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 01(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 8412671c8f39acce
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 02(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 5a855df9a10260d6
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 02(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: d2a700404ab9befd
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 03(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 2f86fb86013c9a6d
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 03(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 99b01372acd19c16
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 04(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 5a89bd4e5091d43b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 04(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 5dba9128a95a67b7
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 05(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: edb59792d02a8d95
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 05(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 465e968df23e9c12
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 06(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 0c0c8c233ca2f40c
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 06(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 26c8333b6b5ac7b5
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 07(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: d5ab74b9c28c6df0
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 07(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 4734ec2f6848c63d
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 99(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 0c514e4f595e8d5e
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 99(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 4048837060f5661e
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 优选(T)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 9443
+    password: ab12fe5487fac0d6
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 优选(R)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 8443
+    password: ce41e9060beebd6e
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 01(T)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 9443
+    password: 8b5fe49cdc5d44ee
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 01(R)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 8443
+    password: 783ee78e059ca937
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 02(T)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 9443
+    password: ad580718ecc3f482
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 02(R)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 8443
+    password: 9a9ceaf050605a01
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 03(T)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 9443
+    password: 8f65c4324e1a725b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 03(R)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 8443
+    password: 1a52f056c1c82271
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 04(T)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 9443
+    password: e4baf8edacccf349
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 04(R)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 8443
+    password: 0fa48993d9d4c287
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 05(T)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 9443
+    password: 231fd5e71eced9ab
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 05(R)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 8443
+    password: 95ba74c18177383f
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 06(T)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 9443
+    password: eb319ec89be2802c
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 06(R)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 8443
+    password: c2eb8f22366bd7a6
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 99(T)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 9443
+    password: 7eab7780d74c8d0f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 99(R)
+    type: trojan
+    server: dxnyzwfsaxr5bgluaw.yinyun.digital
+    port: 8443
+    password: 074b297e99affbe3
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 日本 优选(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 2d2f28ee3cd037d6
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 日本 优选(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: d38ea6357bb59549
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 日本 01(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 222aa94beb140ab0
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 日本 01(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: c29ee8518d5ec7ec
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 日本 02(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: e661f21065b3a8d2
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 日本 02(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 567863e7858b3eff
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 日本 03(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 3021dbd68bee556b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 日本 03(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: c71135af530ba43b
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 日本 04(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 5516c9c716027fbb
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 日本 04(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: ce8699a07d519a64
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 日本 99(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: cd88ab0f58c08c65
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 日本 99(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 85e0f6b0adc27030
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 韩国 优选(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 05f5baec398b7a8e
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 韩国 优选(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: f27cb5084507f958
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 韩国 01(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: b609b3b71bb7db83
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 韩国 01(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: b53f52b8e4bab6c3
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 韩国 02(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 5a2ab3a835629455
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 韩国 02(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 6e288fc7fcf88d9c
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 韩国 03(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 33dd2cc3de73d36b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 韩国 03(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 853745c6400ecfae
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 优选(T)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 9443
+    password: 67f92cb17bb667b2
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 优选(R)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 8443
+    password: 8d3db509185546d7
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 01(T)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 9443
+    password: 418b6240414f8932
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 01(R)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 8443
+    password: 966d2f7a994744d5
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 02(T)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 9443
+    password: f89c59e9aa631c48
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 02(R)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 8443
+    password: 714e13cc21a154ae
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 03(T)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 9443
+    password: 4e7b9d37e2ee2300
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 03(R)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 8443
+    password: ff40f240b5122d94
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 04(T)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 9443
+    password: 963921a66713348d
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 04(R)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 8443
+    password: 93660fbda9abb6f0
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 05(T)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 9443
+    password: e68d35b498da629c
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 05(R)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 8443
+    password: 08a26e028902645d
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 99(T)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 9443
+    password: d1dbc01a62c96403
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 99(R)
+    type: trojan
+    server: quveh6fy10wnmicp.yinyun01.com
+    port: 8443
+    password: 4f6523d7be640e62
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 优选(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 3337f569edaa36e6
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 优选(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: f33ce201f5fe7af3
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 01(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 06e9481497f236e7
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 01(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 10692b559c865cdb
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 02(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: efed78b603177e9b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 02(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 5a215423b23c5f0a
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 03(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 4f90c111af8e13c2
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 03(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: ba7672b98c920d96
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 04(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: c3a2cc00040d27b2
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 04(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 6452988b562d3772
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 05(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 7aef4e957ea60d23
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 05(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 7e972c45e38797e8
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 99(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 0577d762aebecbbf
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 99(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: d326dd3e6b5b893f
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 加拿大 01(T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: c4ee5c4fb2ba4e2e
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 加拿大 01(R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 9f872ad98c70d1b5
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 哈萨克斯坦 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 4e3a739af680d132
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 哈萨克斯坦 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 705874b35b5ca6c7
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 澳大利亚 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: da538b6305b1c1b6
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 澳大利亚 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 5f40935159376753
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 保加利亚 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 342fc474ab4b7842
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 保加利亚 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 86703ba97ab90b11
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 格鲁吉亚 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 1be1fb4dc1c01375
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 格鲁吉亚 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 6eb4e0d4b1ccd39d
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 立陶宛 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: cd1533b445eaed2b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 立陶宛 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 6bcea0572e5eafa9
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 捷克 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: ee2159cc9c1aa69f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 捷克 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 13bb410cbf309864
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 俄罗斯 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: f29ef2fda26ecd7a
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 俄罗斯 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: bb8bffe4c77268fe
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 南非 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: b055aa9a9014c826
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 南非 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 0109bc4d2a63e246
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 芬兰 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: b6271c0a3f16d8c9
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 芬兰 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 7dcc7e8ea527982e
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 瑞士 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: caf013279a90a94f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 瑞士 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: a444c0c775253050
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 亚美尼亚 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: e0bb083ec8e7b3c7
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 亚美尼亚 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 9fdeaf57f719e93e
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 马来西亚 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 994e3b1a20fac196
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 马来西亚 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 1daa1960b10818a8
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 墨西哥 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 9cc33f9a25a09dce
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 墨西哥 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 89634d5d636c8460
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 印度尼西亚 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: f04009ee44712983
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 印度尼西亚 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: bdf5c9e296795b7a
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 孟加拉国 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 3894852d078227ac
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 孟加拉国 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: a00be3386b613d67
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 瑞典 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 455e37a59c4a3d2f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 瑞典 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: c609a84b66453181
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 比利时 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: bcd6aa02a92a5d22
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 比利时 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 5f505d06371dbf81
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 葡萄牙 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 4dda2a9dddb9eecd
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 葡萄牙 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 48b9318f7b19dbd1
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 阿联酋 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: a9ebbbedc962c883
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 阿联酋 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 3a584b21d5bd5465
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 法国 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 3a994c8373ce057f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 法国 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 315ee9182bbdae55
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 波兰 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 938a66c5d455501f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 波兰 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 0c9a5dc527ec2609
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 拉脱维亚 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 0c88ba0546d2dfab
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 拉脱维亚 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 4908f58727554c3d
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 荷兰 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: f53b4a449b98d53b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 荷兰 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: b06047b4f216facb
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 罗马尼亚 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 1e61a9d862434587
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 罗马尼亚 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: ff982aad8b52c6d4
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 奥地利 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 3134cefbd64e2bc3
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 奥地利 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: c29227c8be52df10
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 巴西 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: ef3128629e261163
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 巴西 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 138f69919ccbc5b1
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 土耳其 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 2d33822a9cfc5e5f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 土耳其 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 211298e9ed413e7d
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 以色列 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: d84920a630be19ed
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 以色列 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: ccbce985691c8509
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 意大利 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 8439e71a8509675b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 意大利 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 37f6907f7db37e6e
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 西班牙 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 513758e6a195ee11
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 西班牙 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 49feb7e1363eb559
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 泰国 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 8122eb2103287b4d
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 泰国 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 5d6743ba442eaa37
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 德国 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: ef5cb0db1ba49348
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 德国 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: dc7ad3c91afec331
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 英国 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 5f09670e61f875ec
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 英国 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 1a169db86f53447e
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 印度 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: 2ee097c5acb0f84e
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 印度 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: f8785c1accf6d655
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 乌克兰 (T)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 9443
+    password: b3db8b266b502dca
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 乌克兰 (R)
+    type: trojan
+    server: 9a5e044dbc990c98.yinyun01.com
+    port: 8443
+    password: 9f9c466449d2aa06
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 魔法节点 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 86a271741c1511a4
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 魔法节点 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: efcb122b5bcf7ada
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 优选(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 856e699eb4c36c60
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 优选(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 0e6eb79cadfe1224
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 01(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 6b7c4902c5180717
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 01(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 8412671c8f39acce
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 02(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 5a855df9a10260d6
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 02(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: d2a700404ab9befd
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 03(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 2f86fb86013c9a6d
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 03(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 99b01372acd19c16
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 04(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 5a89bd4e5091d43b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 04(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 5dba9128a95a67b7
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 05(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: edb59792d02a8d95
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 05(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 465e968df23e9c12
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 06(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 0c0c8c233ca2f40c
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 06(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 26c8333b6b5ac7b5
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 07(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: d5ab74b9c28c6df0
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 07(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 4734ec2f6848c63d
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 香港 99(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 0c514e4f595e8d5e
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 香港 99(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 4048837060f5661e
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 优选(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: ab12fe5487fac0d6
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 优选(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: ce41e9060beebd6e
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 01(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 8b5fe49cdc5d44ee
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 01(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 783ee78e059ca937
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 02(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: ad580718ecc3f482
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 02(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 9a9ceaf050605a01
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 03(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 8f65c4324e1a725b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 03(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 1a52f056c1c82271
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 04(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: e4baf8edacccf349
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 04(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 0fa48993d9d4c287
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 05(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 231fd5e71eced9ab
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 05(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 95ba74c18177383f
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 06(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: eb319ec89be2802c
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 06(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: c2eb8f22366bd7a6
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 美国 99(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 7eab7780d74c8d0f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 美国 99(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 074b297e99affbe3
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 日本 优选(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 2d2f28ee3cd037d6
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 日本 优选(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: d38ea6357bb59549
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 日本 01(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 222aa94beb140ab0
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 日本 01(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: c29ee8518d5ec7ec
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 日本 02(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: e661f21065b3a8d2
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 日本 02(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 567863e7858b3eff
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 日本 03(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 3021dbd68bee556b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 日本 03(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: c71135af530ba43b
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 日本 04(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 5516c9c716027fbb
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 日本 04(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: ce8699a07d519a64
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 日本 99(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: cd88ab0f58c08c65
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 日本 99(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 85e0f6b0adc27030
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 韩国 优选(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 05f5baec398b7a8e
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 韩国 优选(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: f27cb5084507f958
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 韩国 01(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: b609b3b71bb7db83
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 韩国 01(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: b53f52b8e4bab6c3
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 韩国 02(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 5a2ab3a835629455
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 韩国 02(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 6e288fc7fcf88d9c
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 韩国 03(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 33dd2cc3de73d36b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 韩国 03(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 853745c6400ecfae
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 优选(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 67f92cb17bb667b2
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 优选(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 8d3db509185546d7
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 01(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 418b6240414f8932
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 01(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 966d2f7a994744d5
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 02(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: f89c59e9aa631c48
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 02(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 714e13cc21a154ae
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 03(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 4e7b9d37e2ee2300
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 03(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: ff40f240b5122d94
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 04(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 963921a66713348d
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 04(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 93660fbda9abb6f0
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 05(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: e68d35b498da629c
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 05(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 08a26e028902645d
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 新加坡 99(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: d1dbc01a62c96403
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 新加坡 99(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 4f6523d7be640e62
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 优选(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 3337f569edaa36e6
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 优选(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: f33ce201f5fe7af3
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 01(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 06e9481497f236e7
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 01(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 10692b559c865cdb
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 02(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: efed78b603177e9b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 02(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 5a215423b23c5f0a
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 03(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 4f90c111af8e13c2
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 03(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: ba7672b98c920d96
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 04(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: c3a2cc00040d27b2
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 04(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 6452988b562d3772
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 05(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 7aef4e957ea60d23
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 05(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 7e972c45e38797e8
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 台湾 99(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 0577d762aebecbbf
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 台湾 99(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: d326dd3e6b5b893f
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 加拿大 01(T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: c4ee5c4fb2ba4e2e
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 加拿大 01(R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 9f872ad98c70d1b5
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 哈萨克斯坦 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 4e3a739af680d132
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 哈萨克斯坦 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 705874b35b5ca6c7
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 澳大利亚 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: da538b6305b1c1b6
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 澳大利亚 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 5f40935159376753
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 保加利亚 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 342fc474ab4b7842
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 保加利亚 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 86703ba97ab90b11
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 格鲁吉亚 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 1be1fb4dc1c01375
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 格鲁吉亚 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 6eb4e0d4b1ccd39d
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 立陶宛 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: cd1533b445eaed2b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 立陶宛 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 6bcea0572e5eafa9
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 捷克 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: ee2159cc9c1aa69f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 捷克 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 13bb410cbf309864
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 俄罗斯 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: f29ef2fda26ecd7a
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 俄罗斯 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: bb8bffe4c77268fe
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 南非 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: b055aa9a9014c826
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 南非 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 0109bc4d2a63e246
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 芬兰 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: b6271c0a3f16d8c9
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 芬兰 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 7dcc7e8ea527982e
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 瑞士 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: caf013279a90a94f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 瑞士 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: a444c0c775253050
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 亚美尼亚 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: e0bb083ec8e7b3c7
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 亚美尼亚 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 9fdeaf57f719e93e
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 马来西亚 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 994e3b1a20fac196
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 马来西亚 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 1daa1960b10818a8
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 墨西哥 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 9cc33f9a25a09dce
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 墨西哥 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 89634d5d636c8460
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 印度尼西亚 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: f04009ee44712983
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 印度尼西亚 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: bdf5c9e296795b7a
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 孟加拉国 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 3894852d078227ac
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 孟加拉国 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: a00be3386b613d67
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 瑞典 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 455e37a59c4a3d2f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 瑞典 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: c609a84b66453181
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 比利时 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: bcd6aa02a92a5d22
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 比利时 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 5f505d06371dbf81
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 葡萄牙 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 4dda2a9dddb9eecd
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 葡萄牙 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 48b9318f7b19dbd1
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 阿联酋 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: a9ebbbedc962c883
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 阿联酋 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 3a584b21d5bd5465
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 法国 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 3a994c8373ce057f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 法国 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 315ee9182bbdae55
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 波兰 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 938a66c5d455501f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 波兰 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 0c9a5dc527ec2609
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 拉脱维亚 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 0c88ba0546d2dfab
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 拉脱维亚 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 4908f58727554c3d
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 荷兰 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: f53b4a449b98d53b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 荷兰 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: b06047b4f216facb
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 罗马尼亚 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 1e61a9d862434587
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 罗马尼亚 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: ff982aad8b52c6d4
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 奥地利 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 3134cefbd64e2bc3
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 奥地利 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: c29227c8be52df10
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 巴西 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: ef3128629e261163
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 巴西 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 138f69919ccbc5b1
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 土耳其 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 2d33822a9cfc5e5f
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 土耳其 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 211298e9ed413e7d
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 以色列 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: d84920a630be19ed
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 以色列 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: ccbce985691c8509
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 意大利 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 8439e71a8509675b
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 意大利 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 37f6907f7db37e6e
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 西班牙 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 513758e6a195ee11
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 西班牙 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 49feb7e1363eb559
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 泰国 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 8122eb2103287b4d
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 泰国 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 5d6743ba442eaa37
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 德国 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: ef5cb0db1ba49348
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 德国 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: dc7ad3c91afec331
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 英国 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 5f09670e61f875ec
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 英国 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 1a169db86f53447e
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 印度 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: 2ee097c5acb0f84e
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 印度 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: f8785c1accf6d655
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: 乌克兰 (T) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 9443
+    password: b3db8b266b502dca
+    tls: true
+    sni: 2026.yinyun2026.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+  - name: 乌克兰 (R) ᴮᴬᴷ
+    type: trojan
+    server: bbbdxnyzwfsaxr5bgl.yinyun.digital
+    port: 8443
+    password: 9f9c466449d2aa06
+    tls: true
+    sni: itunes.apple.com
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oBvBse4MGhgoMnY8x84wIDHAoKyRai65FXOzGJWV6BI
+      short-id: c8a9f32912f762dc
+  - name: public
+    type: http
+    server: 127.0.0.1
+    port: 80
+  - name: public1
+    type: http
+    server: 127.0.0.1
+    port: 80
+proxy-groups:
+  - type: select
+    name: 🚀 节点选择
+    proxies:
+      - ⚡ 自动选择
+      - 魔法节点 (T)
+      - 魔法节点 (R)
+      - 香港 优选(T)
+      - 香港 优选(R)
+      - 香港 01(T)
+      - 香港 01(R)
+      - 香港 02(T)
+      - 香港 02(R)
+      - 香港 03(T)
+      - 香港 03(R)
+      - 香港 04(T)
+      - 香港 04(R)
+      - 香港 05(T)
+      - 香港 05(R)
+      - 香港 06(T)
+      - 香港 06(R)
+      - 香港 07(T)
+      - 香港 07(R)
+      - 香港 99(T)
+      - 香港 99(R)
+      - 美国 优选(T)
+      - 美国 优选(R)
+      - 美国 01(T)
+      - 美国 01(R)
+      - 美国 02(T)
+      - 美国 02(R)
+      - 美国 03(T)
+      - 美国 03(R)
+      - 美国 04(T)
+      - 美国 04(R)
+      - 美国 05(T)
+      - 美国 05(R)
+      - 美国 06(T)
+      - 美国 06(R)
+      - 美国 99(T)
+      - 美国 99(R)
+      - 日本 优选(T)
+      - 日本 优选(R)
+      - 日本 01(T)
+      - 日本 01(R)
+      - 日本 02(T)
+      - 日本 02(R)
+      - 日本 03(T)
+      - 日本 03(R)
+      - 日本 04(T)
+      - 日本 04(R)
+      - 日本 99(T)
+      - 日本 99(R)
+      - 韩国 优选(T)
+      - 韩国 优选(R)
+      - 韩国 01(T)
+      - 韩国 01(R)
+      - 韩国 02(T)
+      - 韩国 02(R)
+      - 韩国 03(T)
+      - 韩国 03(R)
+      - 新加坡 优选(T)
+      - 新加坡 优选(R)
+      - 新加坡 01(T)
+      - 新加坡 01(R)
+      - 新加坡 02(T)
+      - 新加坡 02(R)
+      - 新加坡 03(T)
+      - 新加坡 03(R)
+      - 新加坡 04(T)
+      - 新加坡 04(R)
+      - 新加坡 05(T)
+      - 新加坡 05(R)
+      - 新加坡 99(T)
+      - 新加坡 99(R)
+      - 台湾 优选(T)
+      - 台湾 优选(R)
+      - 台湾 01(T)
+      - 台湾 01(R)
+      - 台湾 02(T)
+      - 台湾 02(R)
+      - 台湾 03(T)
+      - 台湾 03(R)
+      - 台湾 04(T)
+      - 台湾 04(R)
+      - 台湾 05(T)
+      - 台湾 05(R)
+      - 台湾 99(T)
+      - 台湾 99(R)
+      - 加拿大 01(T)
+      - 加拿大 01(R)
+      - 哈萨克斯坦 (T)
+      - 哈萨克斯坦 (R)
+      - 澳大利亚 (T)
+      - 澳大利亚 (R)
+      - 保加利亚 (T)
+      - 保加利亚 (R)
+      - 格鲁吉亚 (T)
+      - 格鲁吉亚 (R)
+      - 立陶宛 (T)
+      - 立陶宛 (R)
+      - 捷克 (T)
+      - 捷克 (R)
+      - 俄罗斯 (T)
+      - 俄罗斯 (R)
+      - 南非 (T)
+      - 南非 (R)
+      - 芬兰 (T)
+      - 芬兰 (R)
+      - 瑞士 (T)
+      - 瑞士 (R)
+      - 亚美尼亚 (T)
+      - 亚美尼亚 (R)
+      - 马来西亚 (T)
+      - 马来西亚 (R)
+      - 墨西哥 (T)
+      - 墨西哥 (R)
+      - 印度尼西亚 (T)
+      - 印度尼西亚 (R)
+      - 孟加拉国 (T)
+      - 孟加拉国 (R)
+      - 瑞典 (T)
+      - 瑞典 (R)
+      - 比利时 (T)
+      - 比利时 (R)
+      - 葡萄牙 (T)
+      - 葡萄牙 (R)
+      - 阿联酋 (T)
+      - 阿联酋 (R)
+      - 法国 (T)
+      - 法国 (R)
+      - 波兰 (T)
+      - 波兰 (R)
+      - 拉脱维亚 (T)
+      - 拉脱维亚 (R)
+      - 荷兰 (T)
+      - 荷兰 (R)
+      - 罗马尼亚 (T)
+      - 罗马尼亚 (R)
+      - 奥地利 (T)
+      - 奥地利 (R)
+      - 巴西 (T)
+      - 巴西 (R)
+      - 土耳其 (T)
+      - 土耳其 (R)
+      - 以色列 (T)
+      - 以色列 (R)
+      - 意大利 (T)
+      - 意大利 (R)
+      - 西班牙 (T)
+      - 西班牙 (R)
+      - 泰国 (T)
+      - 泰国 (R)
+      - 德国 (T)
+      - 德国 (R)
+      - 英国 (T)
+      - 英国 (R)
+      - 印度 (T)
+      - 印度 (R)
+      - 乌克兰 (T)
+      - 乌克兰 (R)
+      - 魔法节点 (T) ᴮᴬᴷ
+      - 魔法节点 (R) ᴮᴬᴷ
+      - 香港 优选(T) ᴮᴬᴷ
+      - 香港 优选(R) ᴮᴬᴷ
+      - 香港 01(T) ᴮᴬᴷ
+      - 香港 01(R) ᴮᴬᴷ
+      - 香港 02(T) ᴮᴬᴷ
+      - 香港 02(R) ᴮᴬᴷ
+      - 香港 03(T) ᴮᴬᴷ
+      - 香港 03(R) ᴮᴬᴷ
+      - 香港 04(T) ᴮᴬᴷ
+      - 香港 04(R) ᴮᴬᴷ
+      - 香港 05(T) ᴮᴬᴷ
+      - 香港 05(R) ᴮᴬᴷ
+      - 香港 06(T) ᴮᴬᴷ
+      - 香港 06(R) ᴮᴬᴷ
+      - 香港 07(T) ᴮᴬᴷ
+      - 香港 07(R) ᴮᴬᴷ
+      - 香港 99(T) ᴮᴬᴷ
+      - 香港 99(R) ᴮᴬᴷ
+      - 美国 优选(T) ᴮᴬᴷ
+      - 美国 优选(R) ᴮᴬᴷ
+      - 美国 01(T) ᴮᴬᴷ
+      - 美国 01(R) ᴮᴬᴷ
+      - 美国 02(T) ᴮᴬᴷ
+      - 美国 02(R) ᴮᴬᴷ
+      - 美国 03(T) ᴮᴬᴷ
+      - 美国 03(R) ᴮᴬᴷ
+      - 美国 04(T) ᴮᴬᴷ
+      - 美国 04(R) ᴮᴬᴷ
+      - 美国 05(T) ᴮᴬᴷ
+      - 美国 05(R) ᴮᴬᴷ
+      - 美国 06(T) ᴮᴬᴷ
+      - 美国 06(R) ᴮᴬᴷ
+      - 美国 99(T) ᴮᴬᴷ
+      - 美国 99(R) ᴮᴬᴷ
+      - 日本 优选(T) ᴮᴬᴷ
+      - 日本 优选(R) ᴮᴬᴷ
+      - 日本 01(T) ᴮᴬᴷ
+      - 日本 01(R) ᴮᴬᴷ
+      - 日本 02(T) ᴮᴬᴷ
+      - 日本 02(R) ᴮᴬᴷ
+      - 日本 03(T) ᴮᴬᴷ
+      - 日本 03(R) ᴮᴬᴷ
+      - 日本 04(T) ᴮᴬᴷ
+      - 日本 04(R) ᴮᴬᴷ
+      - 日本 99(T) ᴮᴬᴷ
+      - 日本 99(R) ᴮᴬᴷ
+      - 韩国 优选(T) ᴮᴬᴷ
+      - 韩国 优选(R) ᴮᴬᴷ
+      - 韩国 01(T) ᴮᴬᴷ
+      - 韩国 01(R) ᴮᴬᴷ
+      - 韩国 02(T) ᴮᴬᴷ
+      - 韩国 02(R) ᴮᴬᴷ
+      - 韩国 03(T) ᴮᴬᴷ
+      - 韩国 03(R) ᴮᴬᴷ
+      - 新加坡 优选(T) ᴮᴬᴷ
+      - 新加坡 优选(R) ᴮᴬᴷ
+      - 新加坡 01(T) ᴮᴬᴷ
+      - 新加坡 01(R) ᴮᴬᴷ
+      - 新加坡 02(T) ᴮᴬᴷ
+      - 新加坡 02(R) ᴮᴬᴷ
+      - 新加坡 03(T) ᴮᴬᴷ
+      - 新加坡 03(R) ᴮᴬᴷ
+      - 新加坡 04(T) ᴮᴬᴷ
+      - 新加坡 04(R) ᴮᴬᴷ
+      - 新加坡 05(T) ᴮᴬᴷ
+      - 新加坡 05(R) ᴮᴬᴷ
+      - 新加坡 99(T) ᴮᴬᴷ
+      - 新加坡 99(R) ᴮᴬᴷ
+      - 台湾 优选(T) ᴮᴬᴷ
+      - 台湾 优选(R) ᴮᴬᴷ
+      - 台湾 01(T) ᴮᴬᴷ
+      - 台湾 01(R) ᴮᴬᴷ
+      - 台湾 02(T) ᴮᴬᴷ
+      - 台湾 02(R) ᴮᴬᴷ
+      - 台湾 03(T) ᴮᴬᴷ
+      - 台湾 03(R) ᴮᴬᴷ
+      - 台湾 04(T) ᴮᴬᴷ
+      - 台湾 04(R) ᴮᴬᴷ
+      - 台湾 05(T) ᴮᴬᴷ
+      - 台湾 05(R) ᴮᴬᴷ
+      - 台湾 99(T) ᴮᴬᴷ
+      - 台湾 99(R) ᴮᴬᴷ
+      - 加拿大 01(T) ᴮᴬᴷ
+      - 加拿大 01(R) ᴮᴬᴷ
+      - 哈萨克斯坦 (T) ᴮᴬᴷ
+      - 哈萨克斯坦 (R) ᴮᴬᴷ
+      - 澳大利亚 (T) ᴮᴬᴷ
+      - 澳大利亚 (R) ᴮᴬᴷ
+      - 保加利亚 (T) ᴮᴬᴷ
+      - 保加利亚 (R) ᴮᴬᴷ
+      - 格鲁吉亚 (T) ᴮᴬᴷ
+      - 格鲁吉亚 (R) ᴮᴬᴷ
+      - 立陶宛 (T) ᴮᴬᴷ
+      - 立陶宛 (R) ᴮᴬᴷ
+      - 捷克 (T) ᴮᴬᴷ
+      - 捷克 (R) ᴮᴬᴷ
+      - 俄罗斯 (T) ᴮᴬᴷ
+      - 俄罗斯 (R) ᴮᴬᴷ
+      - 南非 (T) ᴮᴬᴷ
+      - 南非 (R) ᴮᴬᴷ
+      - 芬兰 (T) ᴮᴬᴷ
+      - 芬兰 (R) ᴮᴬᴷ
+      - 瑞士 (T) ᴮᴬᴷ
+      - 瑞士 (R) ᴮᴬᴷ
+      - 亚美尼亚 (T) ᴮᴬᴷ
+      - 亚美尼亚 (R) ᴮᴬᴷ
+      - 马来西亚 (T) ᴮᴬᴷ
+      - 马来西亚 (R) ᴮᴬᴷ
+      - 墨西哥 (T) ᴮᴬᴷ
+      - 墨西哥 (R) ᴮᴬᴷ
+      - 印度尼西亚 (T) ᴮᴬᴷ
+      - 印度尼西亚 (R) ᴮᴬᴷ
+      - 孟加拉国 (T) ᴮᴬᴷ
+      - 孟加拉国 (R) ᴮᴬᴷ
+      - 瑞典 (T) ᴮᴬᴷ
+      - 瑞典 (R) ᴮᴬᴷ
+      - 比利时 (T) ᴮᴬᴷ
+      - 比利时 (R) ᴮᴬᴷ
+      - 葡萄牙 (T) ᴮᴬᴷ
+      - 葡萄牙 (R) ᴮᴬᴷ
+      - 阿联酋 (T) ᴮᴬᴷ
+      - 阿联酋 (R) ᴮᴬᴷ
+      - 法国 (T) ᴮᴬᴷ
+      - 法国 (R) ᴮᴬᴷ
+      - 波兰 (T) ᴮᴬᴷ
+      - 波兰 (R) ᴮᴬᴷ
+      - 拉脱维亚 (T) ᴮᴬᴷ
+      - 拉脱维亚 (R) ᴮᴬᴷ
+      - 荷兰 (T) ᴮᴬᴷ
+      - 荷兰 (R) ᴮᴬᴷ
+      - 罗马尼亚 (T) ᴮᴬᴷ
+      - 罗马尼亚 (R) ᴮᴬᴷ
+      - 奥地利 (T) ᴮᴬᴷ
+      - 奥地利 (R) ᴮᴬᴷ
+      - 巴西 (T) ᴮᴬᴷ
+      - 巴西 (R) ᴮᴬᴷ
+      - 土耳其 (T) ᴮᴬᴷ
+      - 土耳其 (R) ᴮᴬᴷ
+      - 以色列 (T) ᴮᴬᴷ
+      - 以色列 (R) ᴮᴬᴷ
+      - 意大利 (T) ᴮᴬᴷ
+      - 意大利 (R) ᴮᴬᴷ
+      - 西班牙 (T) ᴮᴬᴷ
+      - 西班牙 (R) ᴮᴬᴷ
+      - 泰国 (T) ᴮᴬᴷ
+      - 泰国 (R) ᴮᴬᴷ
+      - 德国 (T) ᴮᴬᴷ
+      - 德国 (R) ᴮᴬᴷ
+      - 英国 (T) ᴮᴬᴷ
+      - 英国 (R) ᴮᴬᴷ
+      - 印度 (T) ᴮᴬᴷ
+      - 印度 (R) ᴮᴬᴷ
+      - 乌克兰 (T) ᴮᴬᴷ
+      - 乌克兰 (R) ᴮᴬᴷ
+      - DIRECT
+      - REJECT
+      - public
+      - public1
+  - name: ⚡ 自动选择
+    type: url-test
+    proxies:
+      - 魔法节点 (T)
+      - 魔法节点 (R)
+      - 香港 优选(T)
+      - 香港 优选(R)
+      - 香港 01(T)
+      - 香港 01(R)
+      - 香港 02(T)
+      - 香港 02(R)
+      - 香港 03(T)
+      - 香港 03(R)
+      - 香港 04(T)
+      - 香港 04(R)
+      - 香港 05(T)
+      - 香港 05(R)
+      - 香港 06(T)
+      - 香港 06(R)
+      - 香港 07(T)
+      - 香港 07(R)
+      - 香港 99(T)
+      - 香港 99(R)
+      - 美国 优选(T)
+      - 美国 优选(R)
+      - 美国 01(T)
+      - 美国 01(R)
+      - 美国 02(T)
+      - 美国 02(R)
+      - 美国 03(T)
+      - 美国 03(R)
+      - 美国 04(T)
+      - 美国 04(R)
+      - 美国 05(T)
+      - 美国 05(R)
+      - 美国 06(T)
+      - 美国 06(R)
+      - 美国 99(T)
+      - 美国 99(R)
+      - 日本 优选(T)
+      - 日本 优选(R)
+      - 日本 01(T)
+      - 日本 01(R)
+      - 日本 02(T)
+      - 日本 02(R)
+      - 日本 03(T)
+      - 日本 03(R)
+      - 日本 04(T)
+      - 日本 04(R)
+      - 日本 99(T)
+      - 日本 99(R)
+      - 韩国 优选(T)
+      - 韩国 优选(R)
+      - 韩国 01(T)
+      - 韩国 01(R)
+      - 韩国 02(T)
+      - 韩国 02(R)
+      - 韩国 03(T)
+      - 韩国 03(R)
+      - 新加坡 优选(T)
+      - 新加坡 优选(R)
+      - 新加坡 01(T)
+      - 新加坡 01(R)
+      - 新加坡 02(T)
+      - 新加坡 02(R)
+      - 新加坡 03(T)
+      - 新加坡 03(R)
+      - 新加坡 04(T)
+      - 新加坡 04(R)
+      - 新加坡 05(T)
+      - 新加坡 05(R)
+      - 新加坡 99(T)
+      - 新加坡 99(R)
+      - 台湾 优选(T)
+      - 台湾 优选(R)
+      - 台湾 01(T)
+      - 台湾 01(R)
+      - 台湾 02(T)
+      - 台湾 02(R)
+      - 台湾 03(T)
+      - 台湾 03(R)
+      - 台湾 04(T)
+      - 台湾 04(R)
+      - 台湾 05(T)
+      - 台湾 05(R)
+      - 台湾 99(T)
+      - 台湾 99(R)
+      - 加拿大 01(T)
+      - 加拿大 01(R)
+      - 哈萨克斯坦 (T)
+      - 哈萨克斯坦 (R)
+      - 澳大利亚 (T)
+      - 澳大利亚 (R)
+      - 保加利亚 (T)
+      - 保加利亚 (R)
+      - 格鲁吉亚 (T)
+      - 格鲁吉亚 (R)
+      - 立陶宛 (T)
+      - 立陶宛 (R)
+      - 捷克 (T)
+      - 捷克 (R)
+      - 俄罗斯 (T)
+      - 俄罗斯 (R)
+      - 南非 (T)
+      - 南非 (R)
+      - 芬兰 (T)
+      - 芬兰 (R)
+      - 瑞士 (T)
+      - 瑞士 (R)
+      - 亚美尼亚 (T)
+      - 亚美尼亚 (R)
+      - 马来西亚 (T)
+      - 马来西亚 (R)
+      - 墨西哥 (T)
+      - 墨西哥 (R)
+      - 印度尼西亚 (T)
+      - 印度尼西亚 (R)
+      - 孟加拉国 (T)
+      - 孟加拉国 (R)
+      - 瑞典 (T)
+      - 瑞典 (R)
+      - 比利时 (T)
+      - 比利时 (R)
+      - 葡萄牙 (T)
+      - 葡萄牙 (R)
+      - 阿联酋 (T)
+      - 阿联酋 (R)
+      - 法国 (T)
+      - 法国 (R)
+      - 波兰 (T)
+      - 波兰 (R)
+      - 拉脱维亚 (T)
+      - 拉脱维亚 (R)
+      - 荷兰 (T)
+      - 荷兰 (R)
+      - 罗马尼亚 (T)
+      - 罗马尼亚 (R)
+      - 奥地利 (T)
+      - 奥地利 (R)
+      - 巴西 (T)
+      - 巴西 (R)
+      - 土耳其 (T)
+      - 土耳其 (R)
+      - 以色列 (T)
+      - 以色列 (R)
+      - 意大利 (T)
+      - 意大利 (R)
+      - 西班牙 (T)
+      - 西班牙 (R)
+      - 泰国 (T)
+      - 泰国 (R)
+      - 德国 (T)
+      - 德国 (R)
+      - 英国 (T)
+      - 英国 (R)
+      - 印度 (T)
+      - 印度 (R)
+      - 乌克兰 (T)
+      - 乌克兰 (R)
+      - 魔法节点 (T) ᴮᴬᴷ
+      - 魔法节点 (R) ᴮᴬᴷ
+      - 香港 优选(T) ᴮᴬᴷ
+      - 香港 优选(R) ᴮᴬᴷ
+      - 香港 01(T) ᴮᴬᴷ
+      - 香港 01(R) ᴮᴬᴷ
+      - 香港 02(T) ᴮᴬᴷ
+      - 香港 02(R) ᴮᴬᴷ
+      - 香港 03(T) ᴮᴬᴷ
+      - 香港 03(R) ᴮᴬᴷ
+      - 香港 04(T) ᴮᴬᴷ
+      - 香港 04(R) ᴮᴬᴷ
+      - 香港 05(T) ᴮᴬᴷ
+      - 香港 05(R) ᴮᴬᴷ
+      - 香港 06(T) ᴮᴬᴷ
+      - 香港 06(R) ᴮᴬᴷ
+      - 香港 07(T) ᴮᴬᴷ
+      - 香港 07(R) ᴮᴬᴷ
+      - 香港 99(T) ᴮᴬᴷ
+      - 香港 99(R) ᴮᴬᴷ
+      - 美国 优选(T) ᴮᴬᴷ
+      - 美国 优选(R) ᴮᴬᴷ
+      - 美国 01(T) ᴮᴬᴷ
+      - 美国 01(R) ᴮᴬᴷ
+      - 美国 02(T) ᴮᴬᴷ
+      - 美国 02(R) ᴮᴬᴷ
+      - 美国 03(T) ᴮᴬᴷ
+      - 美国 03(R) ᴮᴬᴷ
+      - 美国 04(T) ᴮᴬᴷ
+      - 美国 04(R) ᴮᴬᴷ
+      - 美国 05(T) ᴮᴬᴷ
+      - 美国 05(R) ᴮᴬᴷ
+      - 美国 06(T) ᴮᴬᴷ
+      - 美国 06(R) ᴮᴬᴷ
+      - 美国 99(T) ᴮᴬᴷ
+      - 美国 99(R) ᴮᴬᴷ
+      - 日本 优选(T) ᴮᴬᴷ
+      - 日本 优选(R) ᴮᴬᴷ
+      - 日本 01(T) ᴮᴬᴷ
+      - 日本 01(R) ᴮᴬᴷ
+      - 日本 02(T) ᴮᴬᴷ
+      - 日本 02(R) ᴮᴬᴷ
+      - 日本 03(T) ᴮᴬᴷ
+      - 日本 03(R) ᴮᴬᴷ
+      - 日本 04(T) ᴮᴬᴷ
+      - 日本 04(R) ᴮᴬᴷ
+      - 日本 99(T) ᴮᴬᴷ
+      - 日本 99(R) ᴮᴬᴷ
+      - 韩国 优选(T) ᴮᴬᴷ
+      - 韩国 优选(R) ᴮᴬᴷ
+      - 韩国 01(T) ᴮᴬᴷ
+      - 韩国 01(R) ᴮᴬᴷ
+      - 韩国 02(T) ᴮᴬᴷ
+      - 韩国 02(R) ᴮᴬᴷ
+      - 韩国 03(T) ᴮᴬᴷ
+      - 韩国 03(R) ᴮᴬᴷ
+      - 新加坡 优选(T) ᴮᴬᴷ
+      - 新加坡 优选(R) ᴮᴬᴷ
+      - 新加坡 01(T) ᴮᴬᴷ
+      - 新加坡 01(R) ᴮᴬᴷ
+      - 新加坡 02(T) ᴮᴬᴷ
+      - 新加坡 02(R) ᴮᴬᴷ
+      - 新加坡 03(T) ᴮᴬᴷ
+      - 新加坡 03(R) ᴮᴬᴷ
+      - 新加坡 04(T) ᴮᴬᴷ
+      - 新加坡 04(R) ᴮᴬᴷ
+      - 新加坡 05(T) ᴮᴬᴷ
+      - 新加坡 05(R) ᴮᴬᴷ
+      - 新加坡 99(T) ᴮᴬᴷ
+      - 新加坡 99(R) ᴮᴬᴷ
+      - 台湾 优选(T) ᴮᴬᴷ
+      - 台湾 优选(R) ᴮᴬᴷ
+      - 台湾 01(T) ᴮᴬᴷ
+      - 台湾 01(R) ᴮᴬᴷ
+      - 台湾 02(T) ᴮᴬᴷ
+      - 台湾 02(R) ᴮᴬᴷ
+      - 台湾 03(T) ᴮᴬᴷ
+      - 台湾 03(R) ᴮᴬᴷ
+      - 台湾 04(T) ᴮᴬᴷ
+      - 台湾 04(R) ᴮᴬᴷ
+      - 台湾 05(T) ᴮᴬᴷ
+      - 台湾 05(R) ᴮᴬᴷ
+      - 台湾 99(T) ᴮᴬᴷ
+      - 台湾 99(R) ᴮᴬᴷ
+      - 加拿大 01(T) ᴮᴬᴷ
+      - 加拿大 01(R) ᴮᴬᴷ
+      - 哈萨克斯坦 (T) ᴮᴬᴷ
+      - 哈萨克斯坦 (R) ᴮᴬᴷ
+      - 澳大利亚 (T) ᴮᴬᴷ
+      - 澳大利亚 (R) ᴮᴬᴷ
+      - 保加利亚 (T) ᴮᴬᴷ
+      - 保加利亚 (R) ᴮᴬᴷ
+      - 格鲁吉亚 (T) ᴮᴬᴷ
+      - 格鲁吉亚 (R) ᴮᴬᴷ
+      - 立陶宛 (T) ᴮᴬᴷ
+      - 立陶宛 (R) ᴮᴬᴷ
+      - 捷克 (T) ᴮᴬᴷ
+      - 捷克 (R) ᴮᴬᴷ
+      - 俄罗斯 (T) ᴮᴬᴷ
+      - 俄罗斯 (R) ᴮᴬᴷ
+      - 南非 (T) ᴮᴬᴷ
+      - 南非 (R) ᴮᴬᴷ
+      - 芬兰 (T) ᴮᴬᴷ
+      - 芬兰 (R) ᴮᴬᴷ
+      - 瑞士 (T) ᴮᴬᴷ
+      - 瑞士 (R) ᴮᴬᴷ
+      - 亚美尼亚 (T) ᴮᴬᴷ
+      - 亚美尼亚 (R) ᴮᴬᴷ
+      - 马来西亚 (T) ᴮᴬᴷ
+      - 马来西亚 (R) ᴮᴬᴷ
+      - 墨西哥 (T) ᴮᴬᴷ
+      - 墨西哥 (R) ᴮᴬᴷ
+      - 印度尼西亚 (T) ᴮᴬᴷ
+      - 印度尼西亚 (R) ᴮᴬᴷ
+      - 孟加拉国 (T) ᴮᴬᴷ
+      - 孟加拉国 (R) ᴮᴬᴷ
+      - 瑞典 (T) ᴮᴬᴷ
+      - 瑞典 (R) ᴮᴬᴷ
+      - 比利时 (T) ᴮᴬᴷ
+      - 比利时 (R) ᴮᴬᴷ
+      - 葡萄牙 (T) ᴮᴬᴷ
+      - 葡萄牙 (R) ᴮᴬᴷ
+      - 阿联酋 (T) ᴮᴬᴷ
+      - 阿联酋 (R) ᴮᴬᴷ
+      - 法国 (T) ᴮᴬᴷ
+      - 法国 (R) ᴮᴬᴷ
+      - 波兰 (T) ᴮᴬᴷ
+      - 波兰 (R) ᴮᴬᴷ
+      - 拉脱维亚 (T) ᴮᴬᴷ
+      - 拉脱维亚 (R) ᴮᴬᴷ
+      - 荷兰 (T) ᴮᴬᴷ
+      - 荷兰 (R) ᴮᴬᴷ
+      - 罗马尼亚 (T) ᴮᴬᴷ
+      - 罗马尼亚 (R) ᴮᴬᴷ
+      - 奥地利 (T) ᴮᴬᴷ
+      - 奥地利 (R) ᴮᴬᴷ
+      - 巴西 (T) ᴮᴬᴷ
+      - 巴西 (R) ᴮᴬᴷ
+      - 土耳其 (T) ᴮᴬᴷ
+      - 土耳其 (R) ᴮᴬᴷ
+      - 以色列 (T) ᴮᴬᴷ
+      - 以色列 (R) ᴮᴬᴷ
+      - 意大利 (T) ᴮᴬᴷ
+      - 意大利 (R) ᴮᴬᴷ
+      - 西班牙 (T) ᴮᴬᴷ
+      - 西班牙 (R) ᴮᴬᴷ
+      - 泰国 (T) ᴮᴬᴷ
+      - 泰国 (R) ᴮᴬᴷ
+      - 德国 (T) ᴮᴬᴷ
+      - 德国 (R) ᴮᴬᴷ
+      - 英国 (T) ᴮᴬᴷ
+      - 英国 (R) ᴮᴬᴷ
+      - 印度 (T) ᴮᴬᴷ
+      - 印度 (R) ᴮᴬᴷ
+      - 乌克兰 (T) ᴮᴬᴷ
+      - 乌克兰 (R) ᴮᴬᴷ
+      - public
+      - public1
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    lazy: false
+  - type: select
+    name: 💬 AI 服务
+    proxies:
+      - 🚀 节点选择
+      - 魔法节点 (T)
+      - 魔法节点 (R)
+      - 香港 优选(T)
+      - 香港 优选(R)
+      - 香港 01(T)
+      - 香港 01(R)
+      - 香港 02(T)
+      - 香港 02(R)
+      - 香港 03(T)
+      - 香港 03(R)
+      - 香港 04(T)
+      - 香港 04(R)
+      - 香港 05(T)
+      - 香港 05(R)
+      - 香港 06(T)
+      - 香港 06(R)
+      - 香港 07(T)
+      - 香港 07(R)
+      - 香港 99(T)
+      - 香港 99(R)
+      - 美国 优选(T)
+      - 美国 优选(R)
+      - 美国 01(T)
+      - 美国 01(R)
+      - 美国 02(T)
+      - 美国 02(R)
+      - 美国 03(T)
+      - 美国 03(R)
+      - 美国 04(T)
+      - 美国 04(R)
+      - 美国 05(T)
+      - 美国 05(R)
+      - 美国 06(T)
+      - 美国 06(R)
+      - 美国 99(T)
+      - 美国 99(R)
+      - 日本 优选(T)
+      - 日本 优选(R)
+      - 日本 01(T)
+      - 日本 01(R)
+      - 日本 02(T)
+      - 日本 02(R)
+      - 日本 03(T)
+      - 日本 03(R)
+      - 日本 04(T)
+      - 日本 04(R)
+      - 日本 99(T)
+      - 日本 99(R)
+      - 韩国 优选(T)
+      - 韩国 优选(R)
+      - 韩国 01(T)
+      - 韩国 01(R)
+      - 韩国 02(T)
+      - 韩国 02(R)
+      - 韩国 03(T)
+      - 韩国 03(R)
+      - 新加坡 优选(T)
+      - 新加坡 优选(R)
+      - 新加坡 01(T)
+      - 新加坡 01(R)
+      - 新加坡 02(T)
+      - 新加坡 02(R)
+      - 新加坡 03(T)
+      - 新加坡 03(R)
+      - 新加坡 04(T)
+      - 新加坡 04(R)
+      - 新加坡 05(T)
+      - 新加坡 05(R)
+      - 新加坡 99(T)
+      - 新加坡 99(R)
+      - 台湾 优选(T)
+      - 台湾 优选(R)
+      - 台湾 01(T)
+      - 台湾 01(R)
+      - 台湾 02(T)
+      - 台湾 02(R)
+      - 台湾 03(T)
+      - 台湾 03(R)
+      - 台湾 04(T)
+      - 台湾 04(R)
+      - 台湾 05(T)
+      - 台湾 05(R)
+      - 台湾 99(T)
+      - 台湾 99(R)
+      - 加拿大 01(T)
+      - 加拿大 01(R)
+      - 哈萨克斯坦 (T)
+      - 哈萨克斯坦 (R)
+      - 澳大利亚 (T)
+      - 澳大利亚 (R)
+      - 保加利亚 (T)
+      - 保加利亚 (R)
+      - 格鲁吉亚 (T)
+      - 格鲁吉亚 (R)
+      - 立陶宛 (T)
+      - 立陶宛 (R)
+      - 捷克 (T)
+      - 捷克 (R)
+      - 俄罗斯 (T)
+      - 俄罗斯 (R)
+      - 南非 (T)
+      - 南非 (R)
+      - 芬兰 (T)
+      - 芬兰 (R)
+      - 瑞士 (T)
+      - 瑞士 (R)
+      - 亚美尼亚 (T)
+      - 亚美尼亚 (R)
+      - 马来西亚 (T)
+      - 马来西亚 (R)
+      - 墨西哥 (T)
+      - 墨西哥 (R)
+      - 印度尼西亚 (T)
+      - 印度尼西亚 (R)
+      - 孟加拉国 (T)
+      - 孟加拉国 (R)
+      - 瑞典 (T)
+      - 瑞典 (R)
+      - 比利时 (T)
+      - 比利时 (R)
+      - 葡萄牙 (T)
+      - 葡萄牙 (R)
+      - 阿联酋 (T)
+      - 阿联酋 (R)
+      - 法国 (T)
+      - 法国 (R)
+      - 波兰 (T)
+      - 波兰 (R)
+      - 拉脱维亚 (T)
+      - 拉脱维亚 (R)
+      - 荷兰 (T)
+      - 荷兰 (R)
+      - 罗马尼亚 (T)
+      - 罗马尼亚 (R)
+      - 奥地利 (T)
+      - 奥地利 (R)
+      - 巴西 (T)
+      - 巴西 (R)
+      - 土耳其 (T)
+      - 土耳其 (R)
+      - 以色列 (T)
+      - 以色列 (R)
+      - 意大利 (T)
+      - 意大利 (R)
+      - 西班牙 (T)
+      - 西班牙 (R)
+      - 泰国 (T)
+      - 泰国 (R)
+      - 德国 (T)
+      - 德国 (R)
+      - 英国 (T)
+      - 英国 (R)
+      - 印度 (T)
+      - 印度 (R)
+      - 乌克兰 (T)
+      - 乌克兰 (R)
+      - 魔法节点 (T) ᴮᴬᴷ
+      - 魔法节点 (R) ᴮᴬᴷ
+      - 香港 优选(T) ᴮᴬᴷ
+      - 香港 优选(R) ᴮᴬᴷ
+      - 香港 01(T) ᴮᴬᴷ
+      - 香港 01(R) ᴮᴬᴷ
+      - 香港 02(T) ᴮᴬᴷ
+      - 香港 02(R) ᴮᴬᴷ
+      - 香港 03(T) ᴮᴬᴷ
+      - 香港 03(R) ᴮᴬᴷ
+      - 香港 04(T) ᴮᴬᴷ
+      - 香港 04(R) ᴮᴬᴷ
+      - 香港 05(T) ᴮᴬᴷ
+      - 香港 05(R) ᴮᴬᴷ
+      - 香港 06(T) ᴮᴬᴷ
+      - 香港 06(R) ᴮᴬᴷ
+      - 香港 07(T) ᴮᴬᴷ
+      - 香港 07(R) ᴮᴬᴷ
+      - 香港 99(T) ᴮᴬᴷ
+      - 香港 99(R) ᴮᴬᴷ
+      - 美国 优选(T) ᴮᴬᴷ
+      - 美国 优选(R) ᴮᴬᴷ
+      - 美国 01(T) ᴮᴬᴷ
+      - 美国 01(R) ᴮᴬᴷ
+      - 美国 02(T) ᴮᴬᴷ
+      - 美国 02(R) ᴮᴬᴷ
+      - 美国 03(T) ᴮᴬᴷ
+      - 美国 03(R) ᴮᴬᴷ
+      - 美国 04(T) ᴮᴬᴷ
+      - 美国 04(R) ᴮᴬᴷ
+      - 美国 05(T) ᴮᴬᴷ
+      - 美国 05(R) ᴮᴬᴷ
+      - 美国 06(T) ᴮᴬᴷ
+      - 美国 06(R) ᴮᴬᴷ
+      - 美国 99(T) ᴮᴬᴷ
+      - 美国 99(R) ᴮᴬᴷ
+      - 日本 优选(T) ᴮᴬᴷ
+      - 日本 优选(R) ᴮᴬᴷ
+      - 日本 01(T) ᴮᴬᴷ
+      - 日本 01(R) ᴮᴬᴷ
+      - 日本 02(T) ᴮᴬᴷ
+      - 日本 02(R) ᴮᴬᴷ
+      - 日本 03(T) ᴮᴬᴷ
+      - 日本 03(R) ᴮᴬᴷ
+      - 日本 04(T) ᴮᴬᴷ
+      - 日本 04(R) ᴮᴬᴷ
+      - 日本 99(T) ᴮᴬᴷ
+      - 日本 99(R) ᴮᴬᴷ
+      - 韩国 优选(T) ᴮᴬᴷ
+      - 韩国 优选(R) ᴮᴬᴷ
+      - 韩国 01(T) ᴮᴬᴷ
+      - 韩国 01(R) ᴮᴬᴷ
+      - 韩国 02(T) ᴮᴬᴷ
+      - 韩国 02(R) ᴮᴬᴷ
+      - 韩国 03(T) ᴮᴬᴷ
+      - 韩国 03(R) ᴮᴬᴷ
+      - 新加坡 优选(T) ᴮᴬᴷ
+      - 新加坡 优选(R) ᴮᴬᴷ
+      - 新加坡 01(T) ᴮᴬᴷ
+      - 新加坡 01(R) ᴮᴬᴷ
+      - 新加坡 02(T) ᴮᴬᴷ
+      - 新加坡 02(R) ᴮᴬᴷ
+      - 新加坡 03(T) ᴮᴬᴷ
+      - 新加坡 03(R) ᴮᴬᴷ
+      - 新加坡 04(T) ᴮᴬᴷ
+      - 新加坡 04(R) ᴮᴬᴷ
+      - 新加坡 05(T) ᴮᴬᴷ
+      - 新加坡 05(R) ᴮᴬᴷ
+      - 新加坡 99(T) ᴮᴬᴷ
+      - 新加坡 99(R) ᴮᴬᴷ
+      - 台湾 优选(T) ᴮᴬᴷ
+      - 台湾 优选(R) ᴮᴬᴷ
+      - 台湾 01(T) ᴮᴬᴷ
+      - 台湾 01(R) ᴮᴬᴷ
+      - 台湾 02(T) ᴮᴬᴷ
+      - 台湾 02(R) ᴮᴬᴷ
+      - 台湾 03(T) ᴮᴬᴷ
+      - 台湾 03(R) ᴮᴬᴷ
+      - 台湾 04(T) ᴮᴬᴷ
+      - 台湾 04(R) ᴮᴬᴷ
+      - 台湾 05(T) ᴮᴬᴷ
+      - 台湾 05(R) ᴮᴬᴷ
+      - 台湾 99(T) ᴮᴬᴷ
+      - 台湾 99(R) ᴮᴬᴷ
+      - 加拿大 01(T) ᴮᴬᴷ
+      - 加拿大 01(R) ᴮᴬᴷ
+      - 哈萨克斯坦 (T) ᴮᴬᴷ
+      - 哈萨克斯坦 (R) ᴮᴬᴷ
+      - 澳大利亚 (T) ᴮᴬᴷ
+      - 澳大利亚 (R) ᴮᴬᴷ
+      - 保加利亚 (T) ᴮᴬᴷ
+      - 保加利亚 (R) ᴮᴬᴷ
+      - 格鲁吉亚 (T) ᴮᴬᴷ
+      - 格鲁吉亚 (R) ᴮᴬᴷ
+      - 立陶宛 (T) ᴮᴬᴷ
+      - 立陶宛 (R) ᴮᴬᴷ
+      - 捷克 (T) ᴮᴬᴷ
+      - 捷克 (R) ᴮᴬᴷ
+      - 俄罗斯 (T) ᴮᴬᴷ
+      - 俄罗斯 (R) ᴮᴬᴷ
+      - 南非 (T) ᴮᴬᴷ
+      - 南非 (R) ᴮᴬᴷ
+      - 芬兰 (T) ᴮᴬᴷ
+      - 芬兰 (R) ᴮᴬᴷ
+      - 瑞士 (T) ᴮᴬᴷ
+      - 瑞士 (R) ᴮᴬᴷ
+      - 亚美尼亚 (T) ᴮᴬᴷ
+      - 亚美尼亚 (R) ᴮᴬᴷ
+      - 马来西亚 (T) ᴮᴬᴷ
+      - 马来西亚 (R) ᴮᴬᴷ
+      - 墨西哥 (T) ᴮᴬᴷ
+      - 墨西哥 (R) ᴮᴬᴷ
+      - 印度尼西亚 (T) ᴮᴬᴷ
+      - 印度尼西亚 (R) ᴮᴬᴷ
+      - 孟加拉国 (T) ᴮᴬᴷ
+      - 孟加拉国 (R) ᴮᴬᴷ
+      - 瑞典 (T) ᴮᴬᴷ
+      - 瑞典 (R) ᴮᴬᴷ
+      - 比利时 (T) ᴮᴬᴷ
+      - 比利时 (R) ᴮᴬᴷ
+      - 葡萄牙 (T) ᴮᴬᴷ
+      - 葡萄牙 (R) ᴮᴬᴷ
+      - 阿联酋 (T) ᴮᴬᴷ
+      - 阿联酋 (R) ᴮᴬᴷ
+      - 法国 (T) ᴮᴬᴷ
+      - 法国 (R) ᴮᴬᴷ
+      - 波兰 (T) ᴮᴬᴷ
+      - 波兰 (R) ᴮᴬᴷ
+      - 拉脱维亚 (T) ᴮᴬᴷ
+      - 拉脱维亚 (R) ᴮᴬᴷ
+      - 荷兰 (T) ᴮᴬᴷ
+      - 荷兰 (R) ᴮᴬᴷ
+      - 罗马尼亚 (T) ᴮᴬᴷ
+      - 罗马尼亚 (R) ᴮᴬᴷ
+      - 奥地利 (T) ᴮᴬᴷ
+      - 奥地利 (R) ᴮᴬᴷ
+      - 巴西 (T) ᴮᴬᴷ
+      - 巴西 (R) ᴮᴬᴷ
+      - 土耳其 (T) ᴮᴬᴷ
+      - 土耳其 (R) ᴮᴬᴷ
+      - 以色列 (T) ᴮᴬᴷ
+      - 以色列 (R) ᴮᴬᴷ
+      - 意大利 (T) ᴮᴬᴷ
+      - 意大利 (R) ᴮᴬᴷ
+      - 西班牙 (T) ᴮᴬᴷ
+      - 西班牙 (R) ᴮᴬᴷ
+      - 泰国 (T) ᴮᴬᴷ
+      - 泰国 (R) ᴮᴬᴷ
+      - 德国 (T) ᴮᴬᴷ
+      - 德国 (R) ᴮᴬᴷ
+      - 英国 (T) ᴮᴬᴷ
+      - 英国 (R) ᴮᴬᴷ
+      - 印度 (T) ᴮᴬᴷ
+      - 印度 (R) ᴮᴬᴷ
+      - 乌克兰 (T) ᴮᴬᴷ
+      - 乌克兰 (R) ᴮᴬᴷ
+      - DIRECT
+      - REJECT
+      - public
+      - public1
+  - type: select
+    name: 📹 油管视频
+    proxies:
+      - 🚀 节点选择
+      - 魔法节点 (T)
+      - 魔法节点 (R)
+      - 香港 优选(T)
+      - 香港 优选(R)
+      - 香港 01(T)
+      - 香港 01(R)
+      - 香港 02(T)
+      - 香港 02(R)
+      - 香港 03(T)
+      - 香港 03(R)
+      - 香港 04(T)
+      - 香港 04(R)
+      - 香港 05(T)
+      - 香港 05(R)
+      - 香港 06(T)
+      - 香港 06(R)
+      - 香港 07(T)
+      - 香港 07(R)
+      - 香港 99(T)
+      - 香港 99(R)
+      - 美国 优选(T)
+      - 美国 优选(R)
+      - 美国 01(T)
+      - 美国 01(R)
+      - 美国 02(T)
+      - 美国 02(R)
+      - 美国 03(T)
+      - 美国 03(R)
+      - 美国 04(T)
+      - 美国 04(R)
+      - 美国 05(T)
+      - 美国 05(R)
+      - 美国 06(T)
+      - 美国 06(R)
+      - 美国 99(T)
+      - 美国 99(R)
+      - 日本 优选(T)
+      - 日本 优选(R)
+      - 日本 01(T)
+      - 日本 01(R)
+      - 日本 02(T)
+      - 日本 02(R)
+      - 日本 03(T)
+      - 日本 03(R)
+      - 日本 04(T)
+      - 日本 04(R)
+      - 日本 99(T)
+      - 日本 99(R)
+      - 韩国 优选(T)
+      - 韩国 优选(R)
+      - 韩国 01(T)
+      - 韩国 01(R)
+      - 韩国 02(T)
+      - 韩国 02(R)
+      - 韩国 03(T)
+      - 韩国 03(R)
+      - 新加坡 优选(T)
+      - 新加坡 优选(R)
+      - 新加坡 01(T)
+      - 新加坡 01(R)
+      - 新加坡 02(T)
+      - 新加坡 02(R)
+      - 新加坡 03(T)
+      - 新加坡 03(R)
+      - 新加坡 04(T)
+      - 新加坡 04(R)
+      - 新加坡 05(T)
+      - 新加坡 05(R)
+      - 新加坡 99(T)
+      - 新加坡 99(R)
+      - 台湾 优选(T)
+      - 台湾 优选(R)
+      - 台湾 01(T)
+      - 台湾 01(R)
+      - 台湾 02(T)
+      - 台湾 02(R)
+      - 台湾 03(T)
+      - 台湾 03(R)
+      - 台湾 04(T)
+      - 台湾 04(R)
+      - 台湾 05(T)
+      - 台湾 05(R)
+      - 台湾 99(T)
+      - 台湾 99(R)
+      - 加拿大 01(T)
+      - 加拿大 01(R)
+      - 哈萨克斯坦 (T)
+      - 哈萨克斯坦 (R)
+      - 澳大利亚 (T)
+      - 澳大利亚 (R)
+      - 保加利亚 (T)
+      - 保加利亚 (R)
+      - 格鲁吉亚 (T)
+      - 格鲁吉亚 (R)
+      - 立陶宛 (T)
+      - 立陶宛 (R)
+      - 捷克 (T)
+      - 捷克 (R)
+      - 俄罗斯 (T)
+      - 俄罗斯 (R)
+      - 南非 (T)
+      - 南非 (R)
+      - 芬兰 (T)
+      - 芬兰 (R)
+      - 瑞士 (T)
+      - 瑞士 (R)
+      - 亚美尼亚 (T)
+      - 亚美尼亚 (R)
+      - 马来西亚 (T)
+      - 马来西亚 (R)
+      - 墨西哥 (T)
+      - 墨西哥 (R)
+      - 印度尼西亚 (T)
+      - 印度尼西亚 (R)
+      - 孟加拉国 (T)
+      - 孟加拉国 (R)
+      - 瑞典 (T)
+      - 瑞典 (R)
+      - 比利时 (T)
+      - 比利时 (R)
+      - 葡萄牙 (T)
+      - 葡萄牙 (R)
+      - 阿联酋 (T)
+      - 阿联酋 (R)
+      - 法国 (T)
+      - 法国 (R)
+      - 波兰 (T)
+      - 波兰 (R)
+      - 拉脱维亚 (T)
+      - 拉脱维亚 (R)
+      - 荷兰 (T)
+      - 荷兰 (R)
+      - 罗马尼亚 (T)
+      - 罗马尼亚 (R)
+      - 奥地利 (T)
+      - 奥地利 (R)
+      - 巴西 (T)
+      - 巴西 (R)
+      - 土耳其 (T)
+      - 土耳其 (R)
+      - 以色列 (T)
+      - 以色列 (R)
+      - 意大利 (T)
+      - 意大利 (R)
+      - 西班牙 (T)
+      - 西班牙 (R)
+      - 泰国 (T)
+      - 泰国 (R)
+      - 德国 (T)
+      - 德国 (R)
+      - 英国 (T)
+      - 英国 (R)
+      - 印度 (T)
+      - 印度 (R)
+      - 乌克兰 (T)
+      - 乌克兰 (R)
+      - 魔法节点 (T) ᴮᴬᴷ
+      - 魔法节点 (R) ᴮᴬᴷ
+      - 香港 优选(T) ᴮᴬᴷ
+      - 香港 优选(R) ᴮᴬᴷ
+      - 香港 01(T) ᴮᴬᴷ
+      - 香港 01(R) ᴮᴬᴷ
+      - 香港 02(T) ᴮᴬᴷ
+      - 香港 02(R) ᴮᴬᴷ
+      - 香港 03(T) ᴮᴬᴷ
+      - 香港 03(R) ᴮᴬᴷ
+      - 香港 04(T) ᴮᴬᴷ
+      - 香港 04(R) ᴮᴬᴷ
+      - 香港 05(T) ᴮᴬᴷ
+      - 香港 05(R) ᴮᴬᴷ
+      - 香港 06(T) ᴮᴬᴷ
+      - 香港 06(R) ᴮᴬᴷ
+      - 香港 07(T) ᴮᴬᴷ
+      - 香港 07(R) ᴮᴬᴷ
+      - 香港 99(T) ᴮᴬᴷ
+      - 香港 99(R) ᴮᴬᴷ
+      - 美国 优选(T) ᴮᴬᴷ
+      - 美国 优选(R) ᴮᴬᴷ
+      - 美国 01(T) ᴮᴬᴷ
+      - 美国 01(R) ᴮᴬᴷ
+      - 美国 02(T) ᴮᴬᴷ
+      - 美国 02(R) ᴮᴬᴷ
+      - 美国 03(T) ᴮᴬᴷ
+      - 美国 03(R) ᴮᴬᴷ
+      - 美国 04(T) ᴮᴬᴷ
+      - 美国 04(R) ᴮᴬᴷ
+      - 美国 05(T) ᴮᴬᴷ
+      - 美国 05(R) ᴮᴬᴷ
+      - 美国 06(T) ᴮᴬᴷ
+      - 美国 06(R) ᴮᴬᴷ
+      - 美国 99(T) ᴮᴬᴷ
+      - 美国 99(R) ᴮᴬᴷ
+      - 日本 优选(T) ᴮᴬᴷ
+      - 日本 优选(R) ᴮᴬᴷ
+      - 日本 01(T) ᴮᴬᴷ
+      - 日本 01(R) ᴮᴬᴷ
+      - 日本 02(T) ᴮᴬᴷ
+      - 日本 02(R) ᴮᴬᴷ
+      - 日本 03(T) ᴮᴬᴷ
+      - 日本 03(R) ᴮᴬᴷ
+      - 日本 04(T) ᴮᴬᴷ
+      - 日本 04(R) ᴮᴬᴷ
+      - 日本 99(T) ᴮᴬᴷ
+      - 日本 99(R) ᴮᴬᴷ
+      - 韩国 优选(T) ᴮᴬᴷ
+      - 韩国 优选(R) ᴮᴬᴷ
+      - 韩国 01(T) ᴮᴬᴷ
+      - 韩国 01(R) ᴮᴬᴷ
+      - 韩国 02(T) ᴮᴬᴷ
+      - 韩国 02(R) ᴮᴬᴷ
+      - 韩国 03(T) ᴮᴬᴷ
+      - 韩国 03(R) ᴮᴬᴷ
+      - 新加坡 优选(T) ᴮᴬᴷ
+      - 新加坡 优选(R) ᴮᴬᴷ
+      - 新加坡 01(T) ᴮᴬᴷ
+      - 新加坡 01(R) ᴮᴬᴷ
+      - 新加坡 02(T) ᴮᴬᴷ
+      - 新加坡 02(R) ᴮᴬᴷ
+      - 新加坡 03(T) ᴮᴬᴷ
+      - 新加坡 03(R) ᴮᴬᴷ
+      - 新加坡 04(T) ᴮᴬᴷ
+      - 新加坡 04(R) ᴮᴬᴷ
+      - 新加坡 05(T) ᴮᴬᴷ
+      - 新加坡 05(R) ᴮᴬᴷ
+      - 新加坡 99(T) ᴮᴬᴷ
+      - 新加坡 99(R) ᴮᴬᴷ
+      - 台湾 优选(T) ᴮᴬᴷ
+      - 台湾 优选(R) ᴮᴬᴷ
+      - 台湾 01(T) ᴮᴬᴷ
+      - 台湾 01(R) ᴮᴬᴷ
+      - 台湾 02(T) ᴮᴬᴷ
+      - 台湾 02(R) ᴮᴬᴷ
+      - 台湾 03(T) ᴮᴬᴷ
+      - 台湾 03(R) ᴮᴬᴷ
+      - 台湾 04(T) ᴮᴬᴷ
+      - 台湾 04(R) ᴮᴬᴷ
+      - 台湾 05(T) ᴮᴬᴷ
+      - 台湾 05(R) ᴮᴬᴷ
+      - 台湾 99(T) ᴮᴬᴷ
+      - 台湾 99(R) ᴮᴬᴷ
+      - 加拿大 01(T) ᴮᴬᴷ
+      - 加拿大 01(R) ᴮᴬᴷ
+      - 哈萨克斯坦 (T) ᴮᴬᴷ
+      - 哈萨克斯坦 (R) ᴮᴬᴷ
+      - 澳大利亚 (T) ᴮᴬᴷ
+      - 澳大利亚 (R) ᴮᴬᴷ
+      - 保加利亚 (T) ᴮᴬᴷ
+      - 保加利亚 (R) ᴮᴬᴷ
+      - 格鲁吉亚 (T) ᴮᴬᴷ
+      - 格鲁吉亚 (R) ᴮᴬᴷ
+      - 立陶宛 (T) ᴮᴬᴷ
+      - 立陶宛 (R) ᴮᴬᴷ
+      - 捷克 (T) ᴮᴬᴷ
+      - 捷克 (R) ᴮᴬᴷ
+      - 俄罗斯 (T) ᴮᴬᴷ
+      - 俄罗斯 (R) ᴮᴬᴷ
+      - 南非 (T) ᴮᴬᴷ
+      - 南非 (R) ᴮᴬᴷ
+      - 芬兰 (T) ᴮᴬᴷ
+      - 芬兰 (R) ᴮᴬᴷ
+      - 瑞士 (T) ᴮᴬᴷ
+      - 瑞士 (R) ᴮᴬᴷ
+      - 亚美尼亚 (T) ᴮᴬᴷ
+      - 亚美尼亚 (R) ᴮᴬᴷ
+      - 马来西亚 (T) ᴮᴬᴷ
+      - 马来西亚 (R) ᴮᴬᴷ
+      - 墨西哥 (T) ᴮᴬᴷ
+      - 墨西哥 (R) ᴮᴬᴷ
+      - 印度尼西亚 (T) ᴮᴬᴷ
+      - 印度尼西亚 (R) ᴮᴬᴷ
+      - 孟加拉国 (T) ᴮᴬᴷ
+      - 孟加拉国 (R) ᴮᴬᴷ
+      - 瑞典 (T) ᴮᴬᴷ
+      - 瑞典 (R) ᴮᴬᴷ
+      - 比利时 (T) ᴮᴬᴷ
+      - 比利时 (R) ᴮᴬᴷ
+      - 葡萄牙 (T) ᴮᴬᴷ
+      - 葡萄牙 (R) ᴮᴬᴷ
+      - 阿联酋 (T) ᴮᴬᴷ
+      - 阿联酋 (R) ᴮᴬᴷ
+      - 法国 (T) ᴮᴬᴷ
+      - 法国 (R) ᴮᴬᴷ
+      - 波兰 (T) ᴮᴬᴷ
+      - 波兰 (R) ᴮᴬᴷ
+      - 拉脱维亚 (T) ᴮᴬᴷ
+      - 拉脱维亚 (R) ᴮᴬᴷ
+      - 荷兰 (T) ᴮᴬᴷ
+      - 荷兰 (R) ᴮᴬᴷ
+      - 罗马尼亚 (T) ᴮᴬᴷ
+      - 罗马尼亚 (R) ᴮᴬᴷ
+      - 奥地利 (T) ᴮᴬᴷ
+      - 奥地利 (R) ᴮᴬᴷ
+      - 巴西 (T) ᴮᴬᴷ
+      - 巴西 (R) ᴮᴬᴷ
+      - 土耳其 (T) ᴮᴬᴷ
+      - 土耳其 (R) ᴮᴬᴷ
+      - 以色列 (T) ᴮᴬᴷ
+      - 以色列 (R) ᴮᴬᴷ
+      - 意大利 (T) ᴮᴬᴷ
+      - 意大利 (R) ᴮᴬᴷ
+      - 西班牙 (T) ᴮᴬᴷ
+      - 西班牙 (R) ᴮᴬᴷ
+      - 泰国 (T) ᴮᴬᴷ
+      - 泰国 (R) ᴮᴬᴷ
+      - 德国 (T) ᴮᴬᴷ
+      - 德国 (R) ᴮᴬᴷ
+      - 英国 (T) ᴮᴬᴷ
+      - 英国 (R) ᴮᴬᴷ
+      - 印度 (T) ᴮᴬᴷ
+      - 印度 (R) ᴮᴬᴷ
+      - 乌克兰 (T) ᴮᴬᴷ
+      - 乌克兰 (R) ᴮᴬᴷ
+      - DIRECT
+      - REJECT
+      - public
+      - public1
+  - type: select
+    name: 🔍 谷歌服务
+    proxies:
+      - 🚀 节点选择
+      - 魔法节点 (T)
+      - 魔法节点 (R)
+      - 香港 优选(T)
+      - 香港 优选(R)
+      - 香港 01(T)
+      - 香港 01(R)
+      - 香港 02(T)
+      - 香港 02(R)
+      - 香港 03(T)
+      - 香港 03(R)
+      - 香港 04(T)
+      - 香港 04(R)
+      - 香港 05(T)
+      - 香港 05(R)
+      - 香港 06(T)
+      - 香港 06(R)
+      - 香港 07(T)
+      - 香港 07(R)
+      - 香港 99(T)
+      - 香港 99(R)
+      - 美国 优选(T)
+      - 美国 优选(R)
+      - 美国 01(T)
+      - 美国 01(R)
+      - 美国 02(T)
+      - 美国 02(R)
+      - 美国 03(T)
+      - 美国 03(R)
+      - 美国 04(T)
+      - 美国 04(R)
+      - 美国 05(T)
+      - 美国 05(R)
+      - 美国 06(T)
+      - 美国 06(R)
+      - 美国 99(T)
+      - 美国 99(R)
+      - 日本 优选(T)
+      - 日本 优选(R)
+      - 日本 01(T)
+      - 日本 01(R)
+      - 日本 02(T)
+      - 日本 02(R)
+      - 日本 03(T)
+      - 日本 03(R)
+      - 日本 04(T)
+      - 日本 04(R)
+      - 日本 99(T)
+      - 日本 99(R)
+      - 韩国 优选(T)
+      - 韩国 优选(R)
+      - 韩国 01(T)
+      - 韩国 01(R)
+      - 韩国 02(T)
+      - 韩国 02(R)
+      - 韩国 03(T)
+      - 韩国 03(R)
+      - 新加坡 优选(T)
+      - 新加坡 优选(R)
+      - 新加坡 01(T)
+      - 新加坡 01(R)
+      - 新加坡 02(T)
+      - 新加坡 02(R)
+      - 新加坡 03(T)
+      - 新加坡 03(R)
+      - 新加坡 04(T)
+      - 新加坡 04(R)
+      - 新加坡 05(T)
+      - 新加坡 05(R)
+      - 新加坡 99(T)
+      - 新加坡 99(R)
+      - 台湾 优选(T)
+      - 台湾 优选(R)
+      - 台湾 01(T)
+      - 台湾 01(R)
+      - 台湾 02(T)
+      - 台湾 02(R)
+      - 台湾 03(T)
+      - 台湾 03(R)
+      - 台湾 04(T)
+      - 台湾 04(R)
+      - 台湾 05(T)
+      - 台湾 05(R)
+      - 台湾 99(T)
+      - 台湾 99(R)
+      - 加拿大 01(T)
+      - 加拿大 01(R)
+      - 哈萨克斯坦 (T)
+      - 哈萨克斯坦 (R)
+      - 澳大利亚 (T)
+      - 澳大利亚 (R)
+      - 保加利亚 (T)
+      - 保加利亚 (R)
+      - 格鲁吉亚 (T)
+      - 格鲁吉亚 (R)
+      - 立陶宛 (T)
+      - 立陶宛 (R)
+      - 捷克 (T)
+      - 捷克 (R)
+      - 俄罗斯 (T)
+      - 俄罗斯 (R)
+      - 南非 (T)
+      - 南非 (R)
+      - 芬兰 (T)
+      - 芬兰 (R)
+      - 瑞士 (T)
+      - 瑞士 (R)
+      - 亚美尼亚 (T)
+      - 亚美尼亚 (R)
+      - 马来西亚 (T)
+      - 马来西亚 (R)
+      - 墨西哥 (T)
+      - 墨西哥 (R)
+      - 印度尼西亚 (T)
+      - 印度尼西亚 (R)
+      - 孟加拉国 (T)
+      - 孟加拉国 (R)
+      - 瑞典 (T)
+      - 瑞典 (R)
+      - 比利时 (T)
+      - 比利时 (R)
+      - 葡萄牙 (T)
+      - 葡萄牙 (R)
+      - 阿联酋 (T)
+      - 阿联酋 (R)
+      - 法国 (T)
+      - 法国 (R)
+      - 波兰 (T)
+      - 波兰 (R)
+      - 拉脱维亚 (T)
+      - 拉脱维亚 (R)
+      - 荷兰 (T)
+      - 荷兰 (R)
+      - 罗马尼亚 (T)
+      - 罗马尼亚 (R)
+      - 奥地利 (T)
+      - 奥地利 (R)
+      - 巴西 (T)
+      - 巴西 (R)
+      - 土耳其 (T)
+      - 土耳其 (R)
+      - 以色列 (T)
+      - 以色列 (R)
+      - 意大利 (T)
+      - 意大利 (R)
+      - 西班牙 (T)
+      - 西班牙 (R)
+      - 泰国 (T)
+      - 泰国 (R)
+      - 德国 (T)
+      - 德国 (R)
+      - 英国 (T)
+      - 英国 (R)
+      - 印度 (T)
+      - 印度 (R)
+      - 乌克兰 (T)
+      - 乌克兰 (R)
+      - 魔法节点 (T) ᴮᴬᴷ
+      - 魔法节点 (R) ᴮᴬᴷ
+      - 香港 优选(T) ᴮᴬᴷ
+      - 香港 优选(R) ᴮᴬᴷ
+      - 香港 01(T) ᴮᴬᴷ
+      - 香港 01(R) ᴮᴬᴷ
+      - 香港 02(T) ᴮᴬᴷ
+      - 香港 02(R) ᴮᴬᴷ
+      - 香港 03(T) ᴮᴬᴷ
+      - 香港 03(R) ᴮᴬᴷ
+      - 香港 04(T) ᴮᴬᴷ
+      - 香港 04(R) ᴮᴬᴷ
+      - 香港 05(T) ᴮᴬᴷ
+      - 香港 05(R) ᴮᴬᴷ
+      - 香港 06(T) ᴮᴬᴷ
+      - 香港 06(R) ᴮᴬᴷ
+      - 香港 07(T) ᴮᴬᴷ
+      - 香港 07(R) ᴮᴬᴷ
+      - 香港 99(T) ᴮᴬᴷ
+      - 香港 99(R) ᴮᴬᴷ
+      - 美国 优选(T) ᴮᴬᴷ
+      - 美国 优选(R) ᴮᴬᴷ
+      - 美国 01(T) ᴮᴬᴷ
+      - 美国 01(R) ᴮᴬᴷ
+      - 美国 02(T) ᴮᴬᴷ
+      - 美国 02(R) ᴮᴬᴷ
+      - 美国 03(T) ᴮᴬᴷ
+      - 美国 03(R) ᴮᴬᴷ
+      - 美国 04(T) ᴮᴬᴷ
+      - 美国 04(R) ᴮᴬᴷ
+      - 美国 05(T) ᴮᴬᴷ
+      - 美国 05(R) ᴮᴬᴷ
+      - 美国 06(T) ᴮᴬᴷ
+      - 美国 06(R) ᴮᴬᴷ
+      - 美国 99(T) ᴮᴬᴷ
+      - 美国 99(R) ᴮᴬᴷ
+      - 日本 优选(T) ᴮᴬᴷ
+      - 日本 优选(R) ᴮᴬᴷ
+      - 日本 01(T) ᴮᴬᴷ
+      - 日本 01(R) ᴮᴬᴷ
+      - 日本 02(T) ᴮᴬᴷ
+      - 日本 02(R) ᴮᴬᴷ
+      - 日本 03(T) ᴮᴬᴷ
+      - 日本 03(R) ᴮᴬᴷ
+      - 日本 04(T) ᴮᴬᴷ
+      - 日本 04(R) ᴮᴬᴷ
+      - 日本 99(T) ᴮᴬᴷ
+      - 日本 99(R) ᴮᴬᴷ
+      - 韩国 优选(T) ᴮᴬᴷ
+      - 韩国 优选(R) ᴮᴬᴷ
+      - 韩国 01(T) ᴮᴬᴷ
+      - 韩国 01(R) ᴮᴬᴷ
+      - 韩国 02(T) ᴮᴬᴷ
+      - 韩国 02(R) ᴮᴬᴷ
+      - 韩国 03(T) ᴮᴬᴷ
+      - 韩国 03(R) ᴮᴬᴷ
+      - 新加坡 优选(T) ᴮᴬᴷ
+      - 新加坡 优选(R) ᴮᴬᴷ
+      - 新加坡 01(T) ᴮᴬᴷ
+      - 新加坡 01(R) ᴮᴬᴷ
+      - 新加坡 02(T) ᴮᴬᴷ
+      - 新加坡 02(R) ᴮᴬᴷ
+      - 新加坡 03(T) ᴮᴬᴷ
+      - 新加坡 03(R) ᴮᴬᴷ
+      - 新加坡 04(T) ᴮᴬᴷ
+      - 新加坡 04(R) ᴮᴬᴷ
+      - 新加坡 05(T) ᴮᴬᴷ
+      - 新加坡 05(R) ᴮᴬᴷ
+      - 新加坡 99(T) ᴮᴬᴷ
+      - 新加坡 99(R) ᴮᴬᴷ
+      - 台湾 优选(T) ᴮᴬᴷ
+      - 台湾 优选(R) ᴮᴬᴷ
+      - 台湾 01(T) ᴮᴬᴷ
+      - 台湾 01(R) ᴮᴬᴷ
+      - 台湾 02(T) ᴮᴬᴷ
+      - 台湾 02(R) ᴮᴬᴷ
+      - 台湾 03(T) ᴮᴬᴷ
+      - 台湾 03(R) ᴮᴬᴷ
+      - 台湾 04(T) ᴮᴬᴷ
+      - 台湾 04(R) ᴮᴬᴷ
+      - 台湾 05(T) ᴮᴬᴷ
+      - 台湾 05(R) ᴮᴬᴷ
+      - 台湾 99(T) ᴮᴬᴷ
+      - 台湾 99(R) ᴮᴬᴷ
+      - 加拿大 01(T) ᴮᴬᴷ
+      - 加拿大 01(R) ᴮᴬᴷ
+      - 哈萨克斯坦 (T) ᴮᴬᴷ
+      - 哈萨克斯坦 (R) ᴮᴬᴷ
+      - 澳大利亚 (T) ᴮᴬᴷ
+      - 澳大利亚 (R) ᴮᴬᴷ
+      - 保加利亚 (T) ᴮᴬᴷ
+      - 保加利亚 (R) ᴮᴬᴷ
+      - 格鲁吉亚 (T) ᴮᴬᴷ
+      - 格鲁吉亚 (R) ᴮᴬᴷ
+      - 立陶宛 (T) ᴮᴬᴷ
+      - 立陶宛 (R) ᴮᴬᴷ
+      - 捷克 (T) ᴮᴬᴷ
+      - 捷克 (R) ᴮᴬᴷ
+      - 俄罗斯 (T) ᴮᴬᴷ
+      - 俄罗斯 (R) ᴮᴬᴷ
+      - 南非 (T) ᴮᴬᴷ
+      - 南非 (R) ᴮᴬᴷ
+      - 芬兰 (T) ᴮᴬᴷ
+      - 芬兰 (R) ᴮᴬᴷ
+      - 瑞士 (T) ᴮᴬᴷ
+      - 瑞士 (R) ᴮᴬᴷ
+      - 亚美尼亚 (T) ᴮᴬᴷ
+      - 亚美尼亚 (R) ᴮᴬᴷ
+      - 马来西亚 (T) ᴮᴬᴷ
+      - 马来西亚 (R) ᴮᴬᴷ
+      - 墨西哥 (T) ᴮᴬᴷ
+      - 墨西哥 (R) ᴮᴬᴷ
+      - 印度尼西亚 (T) ᴮᴬᴷ
+      - 印度尼西亚 (R) ᴮᴬᴷ
+      - 孟加拉国 (T) ᴮᴬᴷ
+      - 孟加拉国 (R) ᴮᴬᴷ
+      - 瑞典 (T) ᴮᴬᴷ
+      - 瑞典 (R) ᴮᴬᴷ
+      - 比利时 (T) ᴮᴬᴷ
+      - 比利时 (R) ᴮᴬᴷ
+      - 葡萄牙 (T) ᴮᴬᴷ
+      - 葡萄牙 (R) ᴮᴬᴷ
+      - 阿联酋 (T) ᴮᴬᴷ
+      - 阿联酋 (R) ᴮᴬᴷ
+      - 法国 (T) ᴮᴬᴷ
+      - 法国 (R) ᴮᴬᴷ
+      - 波兰 (T) ᴮᴬᴷ
+      - 波兰 (R) ᴮᴬᴷ
+      - 拉脱维亚 (T) ᴮᴬᴷ
+      - 拉脱维亚 (R) ᴮᴬᴷ
+      - 荷兰 (T) ᴮᴬᴷ
+      - 荷兰 (R) ᴮᴬᴷ
+      - 罗马尼亚 (T) ᴮᴬᴷ
+      - 罗马尼亚 (R) ᴮᴬᴷ
+      - 奥地利 (T) ᴮᴬᴷ
+      - 奥地利 (R) ᴮᴬᴷ
+      - 巴西 (T) ᴮᴬᴷ
+      - 巴西 (R) ᴮᴬᴷ
+      - 土耳其 (T) ᴮᴬᴷ
+      - 土耳其 (R) ᴮᴬᴷ
+      - 以色列 (T) ᴮᴬᴷ
+      - 以色列 (R) ᴮᴬᴷ
+      - 意大利 (T) ᴮᴬᴷ
+      - 意大利 (R) ᴮᴬᴷ
+      - 西班牙 (T) ᴮᴬᴷ
+      - 西班牙 (R) ᴮᴬᴷ
+      - 泰国 (T) ᴮᴬᴷ
+      - 泰国 (R) ᴮᴬᴷ
+      - 德国 (T) ᴮᴬᴷ
+      - 德国 (R) ᴮᴬᴷ
+      - 英国 (T) ᴮᴬᴷ
+      - 英国 (R) ᴮᴬᴷ
+      - 印度 (T) ᴮᴬᴷ
+      - 印度 (R) ᴮᴬᴷ
+      - 乌克兰 (T) ᴮᴬᴷ
+      - 乌克兰 (R) ᴮᴬᴷ
+      - DIRECT
+      - REJECT
+      - public
+      - public1
+  - type: select
+    name: 🏠 私有网络
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+      - 魔法节点 (T)
+      - 魔法节点 (R)
+      - 香港 优选(T)
+      - 香港 优选(R)
+      - 香港 01(T)
+      - 香港 01(R)
+      - 香港 02(T)
+      - 香港 02(R)
+      - 香港 03(T)
+      - 香港 03(R)
+      - 香港 04(T)
+      - 香港 04(R)
+      - 香港 05(T)
+      - 香港 05(R)
+      - 香港 06(T)
+      - 香港 06(R)
+      - 香港 07(T)
+      - 香港 07(R)
+      - 香港 99(T)
+      - 香港 99(R)
+      - 美国 优选(T)
+      - 美国 优选(R)
+      - 美国 01(T)
+      - 美国 01(R)
+      - 美国 02(T)
+      - 美国 02(R)
+      - 美国 03(T)
+      - 美国 03(R)
+      - 美国 04(T)
+      - 美国 04(R)
+      - 美国 05(T)
+      - 美国 05(R)
+      - 美国 06(T)
+      - 美国 06(R)
+      - 美国 99(T)
+      - 美国 99(R)
+      - 日本 优选(T)
+      - 日本 优选(R)
+      - 日本 01(T)
+      - 日本 01(R)
+      - 日本 02(T)
+      - 日本 02(R)
+      - 日本 03(T)
+      - 日本 03(R)
+      - 日本 04(T)
+      - 日本 04(R)
+      - 日本 99(T)
+      - 日本 99(R)
+      - 韩国 优选(T)
+      - 韩国 优选(R)
+      - 韩国 01(T)
+      - 韩国 01(R)
+      - 韩国 02(T)
+      - 韩国 02(R)
+      - 韩国 03(T)
+      - 韩国 03(R)
+      - 新加坡 优选(T)
+      - 新加坡 优选(R)
+      - 新加坡 01(T)
+      - 新加坡 01(R)
+      - 新加坡 02(T)
+      - 新加坡 02(R)
+      - 新加坡 03(T)
+      - 新加坡 03(R)
+      - 新加坡 04(T)
+      - 新加坡 04(R)
+      - 新加坡 05(T)
+      - 新加坡 05(R)
+      - 新加坡 99(T)
+      - 新加坡 99(R)
+      - 台湾 优选(T)
+      - 台湾 优选(R)
+      - 台湾 01(T)
+      - 台湾 01(R)
+      - 台湾 02(T)
+      - 台湾 02(R)
+      - 台湾 03(T)
+      - 台湾 03(R)
+      - 台湾 04(T)
+      - 台湾 04(R)
+      - 台湾 05(T)
+      - 台湾 05(R)
+      - 台湾 99(T)
+      - 台湾 99(R)
+      - 加拿大 01(T)
+      - 加拿大 01(R)
+      - 哈萨克斯坦 (T)
+      - 哈萨克斯坦 (R)
+      - 澳大利亚 (T)
+      - 澳大利亚 (R)
+      - 保加利亚 (T)
+      - 保加利亚 (R)
+      - 格鲁吉亚 (T)
+      - 格鲁吉亚 (R)
+      - 立陶宛 (T)
+      - 立陶宛 (R)
+      - 捷克 (T)
+      - 捷克 (R)
+      - 俄罗斯 (T)
+      - 俄罗斯 (R)
+      - 南非 (T)
+      - 南非 (R)
+      - 芬兰 (T)
+      - 芬兰 (R)
+      - 瑞士 (T)
+      - 瑞士 (R)
+      - 亚美尼亚 (T)
+      - 亚美尼亚 (R)
+      - 马来西亚 (T)
+      - 马来西亚 (R)
+      - 墨西哥 (T)
+      - 墨西哥 (R)
+      - 印度尼西亚 (T)
+      - 印度尼西亚 (R)
+      - 孟加拉国 (T)
+      - 孟加拉国 (R)
+      - 瑞典 (T)
+      - 瑞典 (R)
+      - 比利时 (T)
+      - 比利时 (R)
+      - 葡萄牙 (T)
+      - 葡萄牙 (R)
+      - 阿联酋 (T)
+      - 阿联酋 (R)
+      - 法国 (T)
+      - 法国 (R)
+      - 波兰 (T)
+      - 波兰 (R)
+      - 拉脱维亚 (T)
+      - 拉脱维亚 (R)
+      - 荷兰 (T)
+      - 荷兰 (R)
+      - 罗马尼亚 (T)
+      - 罗马尼亚 (R)
+      - 奥地利 (T)
+      - 奥地利 (R)
+      - 巴西 (T)
+      - 巴西 (R)
+      - 土耳其 (T)
+      - 土耳其 (R)
+      - 以色列 (T)
+      - 以色列 (R)
+      - 意大利 (T)
+      - 意大利 (R)
+      - 西班牙 (T)
+      - 西班牙 (R)
+      - 泰国 (T)
+      - 泰国 (R)
+      - 德国 (T)
+      - 德国 (R)
+      - 英国 (T)
+      - 英国 (R)
+      - 印度 (T)
+      - 印度 (R)
+      - 乌克兰 (T)
+      - 乌克兰 (R)
+      - 魔法节点 (T) ᴮᴬᴷ
+      - 魔法节点 (R) ᴮᴬᴷ
+      - 香港 优选(T) ᴮᴬᴷ
+      - 香港 优选(R) ᴮᴬᴷ
+      - 香港 01(T) ᴮᴬᴷ
+      - 香港 01(R) ᴮᴬᴷ
+      - 香港 02(T) ᴮᴬᴷ
+      - 香港 02(R) ᴮᴬᴷ
+      - 香港 03(T) ᴮᴬᴷ
+      - 香港 03(R) ᴮᴬᴷ
+      - 香港 04(T) ᴮᴬᴷ
+      - 香港 04(R) ᴮᴬᴷ
+      - 香港 05(T) ᴮᴬᴷ
+      - 香港 05(R) ᴮᴬᴷ
+      - 香港 06(T) ᴮᴬᴷ
+      - 香港 06(R) ᴮᴬᴷ
+      - 香港 07(T) ᴮᴬᴷ
+      - 香港 07(R) ᴮᴬᴷ
+      - 香港 99(T) ᴮᴬᴷ
+      - 香港 99(R) ᴮᴬᴷ
+      - 美国 优选(T) ᴮᴬᴷ
+      - 美国 优选(R) ᴮᴬᴷ
+      - 美国 01(T) ᴮᴬᴷ
+      - 美国 01(R) ᴮᴬᴷ
+      - 美国 02(T) ᴮᴬᴷ
+      - 美国 02(R) ᴮᴬᴷ
+      - 美国 03(T) ᴮᴬᴷ
+      - 美国 03(R) ᴮᴬᴷ
+      - 美国 04(T) ᴮᴬᴷ
+      - 美国 04(R) ᴮᴬᴷ
+      - 美国 05(T) ᴮᴬᴷ
+      - 美国 05(R) ᴮᴬᴷ
+      - 美国 06(T) ᴮᴬᴷ
+      - 美国 06(R) ᴮᴬᴷ
+      - 美国 99(T) ᴮᴬᴷ
+      - 美国 99(R) ᴮᴬᴷ
+      - 日本 优选(T) ᴮᴬᴷ
+      - 日本 优选(R) ᴮᴬᴷ
+      - 日本 01(T) ᴮᴬᴷ
+      - 日本 01(R) ᴮᴬᴷ
+      - 日本 02(T) ᴮᴬᴷ
+      - 日本 02(R) ᴮᴬᴷ
+      - 日本 03(T) ᴮᴬᴷ
+      - 日本 03(R) ᴮᴬᴷ
+      - 日本 04(T) ᴮᴬᴷ
+      - 日本 04(R) ᴮᴬᴷ
+      - 日本 99(T) ᴮᴬᴷ
+      - 日本 99(R) ᴮᴬᴷ
+      - 韩国 优选(T) ᴮᴬᴷ
+      - 韩国 优选(R) ᴮᴬᴷ
+      - 韩国 01(T) ᴮᴬᴷ
+      - 韩国 01(R) ᴮᴬᴷ
+      - 韩国 02(T) ᴮᴬᴷ
+      - 韩国 02(R) ᴮᴬᴷ
+      - 韩国 03(T) ᴮᴬᴷ
+      - 韩国 03(R) ᴮᴬᴷ
+      - 新加坡 优选(T) ᴮᴬᴷ
+      - 新加坡 优选(R) ᴮᴬᴷ
+      - 新加坡 01(T) ᴮᴬᴷ
+      - 新加坡 01(R) ᴮᴬᴷ
+      - 新加坡 02(T) ᴮᴬᴷ
+      - 新加坡 02(R) ᴮᴬᴷ
+      - 新加坡 03(T) ᴮᴬᴷ
+      - 新加坡 03(R) ᴮᴬᴷ
+      - 新加坡 04(T) ᴮᴬᴷ
+      - 新加坡 04(R) ᴮᴬᴷ
+      - 新加坡 05(T) ᴮᴬᴷ
+      - 新加坡 05(R) ᴮᴬᴷ
+      - 新加坡 99(T) ᴮᴬᴷ
+      - 新加坡 99(R) ᴮᴬᴷ
+      - 台湾 优选(T) ᴮᴬᴷ
+      - 台湾 优选(R) ᴮᴬᴷ
+      - 台湾 01(T) ᴮᴬᴷ
+      - 台湾 01(R) ᴮᴬᴷ
+      - 台湾 02(T) ᴮᴬᴷ
+      - 台湾 02(R) ᴮᴬᴷ
+      - 台湾 03(T) ᴮᴬᴷ
+      - 台湾 03(R) ᴮᴬᴷ
+      - 台湾 04(T) ᴮᴬᴷ
+      - 台湾 04(R) ᴮᴬᴷ
+      - 台湾 05(T) ᴮᴬᴷ
+      - 台湾 05(R) ᴮᴬᴷ
+      - 台湾 99(T) ᴮᴬᴷ
+      - 台湾 99(R) ᴮᴬᴷ
+      - 加拿大 01(T) ᴮᴬᴷ
+      - 加拿大 01(R) ᴮᴬᴷ
+      - 哈萨克斯坦 (T) ᴮᴬᴷ
+      - 哈萨克斯坦 (R) ᴮᴬᴷ
+      - 澳大利亚 (T) ᴮᴬᴷ
+      - 澳大利亚 (R) ᴮᴬᴷ
+      - 保加利亚 (T) ᴮᴬᴷ
+      - 保加利亚 (R) ᴮᴬᴷ
+      - 格鲁吉亚 (T) ᴮᴬᴷ
+      - 格鲁吉亚 (R) ᴮᴬᴷ
+      - 立陶宛 (T) ᴮᴬᴷ
+      - 立陶宛 (R) ᴮᴬᴷ
+      - 捷克 (T) ᴮᴬᴷ
+      - 捷克 (R) ᴮᴬᴷ
+      - 俄罗斯 (T) ᴮᴬᴷ
+      - 俄罗斯 (R) ᴮᴬᴷ
+      - 南非 (T) ᴮᴬᴷ
+      - 南非 (R) ᴮᴬᴷ
+      - 芬兰 (T) ᴮᴬᴷ
+      - 芬兰 (R) ᴮᴬᴷ
+      - 瑞士 (T) ᴮᴬᴷ
+      - 瑞士 (R) ᴮᴬᴷ
+      - 亚美尼亚 (T) ᴮᴬᴷ
+      - 亚美尼亚 (R) ᴮᴬᴷ
+      - 马来西亚 (T) ᴮᴬᴷ
+      - 马来西亚 (R) ᴮᴬᴷ
+      - 墨西哥 (T) ᴮᴬᴷ
+      - 墨西哥 (R) ᴮᴬᴷ
+      - 印度尼西亚 (T) ᴮᴬᴷ
+      - 印度尼西亚 (R) ᴮᴬᴷ
+      - 孟加拉国 (T) ᴮᴬᴷ
+      - 孟加拉国 (R) ᴮᴬᴷ
+      - 瑞典 (T) ᴮᴬᴷ
+      - 瑞典 (R) ᴮᴬᴷ
+      - 比利时 (T) ᴮᴬᴷ
+      - 比利时 (R) ᴮᴬᴷ
+      - 葡萄牙 (T) ᴮᴬᴷ
+      - 葡萄牙 (R) ᴮᴬᴷ
+      - 阿联酋 (T) ᴮᴬᴷ
+      - 阿联酋 (R) ᴮᴬᴷ
+      - 法国 (T) ᴮᴬᴷ
+      - 法国 (R) ᴮᴬᴷ
+      - 波兰 (T) ᴮᴬᴷ
+      - 波兰 (R) ᴮᴬᴷ
+      - 拉脱维亚 (T) ᴮᴬᴷ
+      - 拉脱维亚 (R) ᴮᴬᴷ
+      - 荷兰 (T) ᴮᴬᴷ
+      - 荷兰 (R) ᴮᴬᴷ
+      - 罗马尼亚 (T) ᴮᴬᴷ
+      - 罗马尼亚 (R) ᴮᴬᴷ
+      - 奥地利 (T) ᴮᴬᴷ
+      - 奥地利 (R) ᴮᴬᴷ
+      - 巴西 (T) ᴮᴬᴷ
+      - 巴西 (R) ᴮᴬᴷ
+      - 土耳其 (T) ᴮᴬᴷ
+      - 土耳其 (R) ᴮᴬᴷ
+      - 以色列 (T) ᴮᴬᴷ
+      - 以色列 (R) ᴮᴬᴷ
+      - 意大利 (T) ᴮᴬᴷ
+      - 意大利 (R) ᴮᴬᴷ
+      - 西班牙 (T) ᴮᴬᴷ
+      - 西班牙 (R) ᴮᴬᴷ
+      - 泰国 (T) ᴮᴬᴷ
+      - 泰国 (R) ᴮᴬᴷ
+      - 德国 (T) ᴮᴬᴷ
+      - 德国 (R) ᴮᴬᴷ
+      - 英国 (T) ᴮᴬᴷ
+      - 英国 (R) ᴮᴬᴷ
+      - 印度 (T) ᴮᴬᴷ
+      - 印度 (R) ᴮᴬᴷ
+      - 乌克兰 (T) ᴮᴬᴷ
+      - 乌克兰 (R) ᴮᴬᴷ
+      - REJECT
+      - public
+      - public1
+  - type: select
+    name: 🔒 国内服务
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+      - 魔法节点 (T)
+      - 魔法节点 (R)
+      - 香港 优选(T)
+      - 香港 优选(R)
+      - 香港 01(T)
+      - 香港 01(R)
+      - 香港 02(T)
+      - 香港 02(R)
+      - 香港 03(T)
+      - 香港 03(R)
+      - 香港 04(T)
+      - 香港 04(R)
+      - 香港 05(T)
+      - 香港 05(R)
+      - 香港 06(T)
+      - 香港 06(R)
+      - 香港 07(T)
+      - 香港 07(R)
+      - 香港 99(T)
+      - 香港 99(R)
+      - 美国 优选(T)
+      - 美国 优选(R)
+      - 美国 01(T)
+      - 美国 01(R)
+      - 美国 02(T)
+      - 美国 02(R)
+      - 美国 03(T)
+      - 美国 03(R)
+      - 美国 04(T)
+      - 美国 04(R)
+      - 美国 05(T)
+      - 美国 05(R)
+      - 美国 06(T)
+      - 美国 06(R)
+      - 美国 99(T)
+      - 美国 99(R)
+      - 日本 优选(T)
+      - 日本 优选(R)
+      - 日本 01(T)
+      - 日本 01(R)
+      - 日本 02(T)
+      - 日本 02(R)
+      - 日本 03(T)
+      - 日本 03(R)
+      - 日本 04(T)
+      - 日本 04(R)
+      - 日本 99(T)
+      - 日本 99(R)
+      - 韩国 优选(T)
+      - 韩国 优选(R)
+      - 韩国 01(T)
+      - 韩国 01(R)
+      - 韩国 02(T)
+      - 韩国 02(R)
+      - 韩国 03(T)
+      - 韩国 03(R)
+      - 新加坡 优选(T)
+      - 新加坡 优选(R)
+      - 新加坡 01(T)
+      - 新加坡 01(R)
+      - 新加坡 02(T)
+      - 新加坡 02(R)
+      - 新加坡 03(T)
+      - 新加坡 03(R)
+      - 新加坡 04(T)
+      - 新加坡 04(R)
+      - 新加坡 05(T)
+      - 新加坡 05(R)
+      - 新加坡 99(T)
+      - 新加坡 99(R)
+      - 台湾 优选(T)
+      - 台湾 优选(R)
+      - 台湾 01(T)
+      - 台湾 01(R)
+      - 台湾 02(T)
+      - 台湾 02(R)
+      - 台湾 03(T)
+      - 台湾 03(R)
+      - 台湾 04(T)
+      - 台湾 04(R)
+      - 台湾 05(T)
+      - 台湾 05(R)
+      - 台湾 99(T)
+      - 台湾 99(R)
+      - 加拿大 01(T)
+      - 加拿大 01(R)
+      - 哈萨克斯坦 (T)
+      - 哈萨克斯坦 (R)
+      - 澳大利亚 (T)
+      - 澳大利亚 (R)
+      - 保加利亚 (T)
+      - 保加利亚 (R)
+      - 格鲁吉亚 (T)
+      - 格鲁吉亚 (R)
+      - 立陶宛 (T)
+      - 立陶宛 (R)
+      - 捷克 (T)
+      - 捷克 (R)
+      - 俄罗斯 (T)
+      - 俄罗斯 (R)
+      - 南非 (T)
+      - 南非 (R)
+      - 芬兰 (T)
+      - 芬兰 (R)
+      - 瑞士 (T)
+      - 瑞士 (R)
+      - 亚美尼亚 (T)
+      - 亚美尼亚 (R)
+      - 马来西亚 (T)
+      - 马来西亚 (R)
+      - 墨西哥 (T)
+      - 墨西哥 (R)
+      - 印度尼西亚 (T)
+      - 印度尼西亚 (R)
+      - 孟加拉国 (T)
+      - 孟加拉国 (R)
+      - 瑞典 (T)
+      - 瑞典 (R)
+      - 比利时 (T)
+      - 比利时 (R)
+      - 葡萄牙 (T)
+      - 葡萄牙 (R)
+      - 阿联酋 (T)
+      - 阿联酋 (R)
+      - 法国 (T)
+      - 法国 (R)
+      - 波兰 (T)
+      - 波兰 (R)
+      - 拉脱维亚 (T)
+      - 拉脱维亚 (R)
+      - 荷兰 (T)
+      - 荷兰 (R)
+      - 罗马尼亚 (T)
+      - 罗马尼亚 (R)
+      - 奥地利 (T)
+      - 奥地利 (R)
+      - 巴西 (T)
+      - 巴西 (R)
+      - 土耳其 (T)
+      - 土耳其 (R)
+      - 以色列 (T)
+      - 以色列 (R)
+      - 意大利 (T)
+      - 意大利 (R)
+      - 西班牙 (T)
+      - 西班牙 (R)
+      - 泰国 (T)
+      - 泰国 (R)
+      - 德国 (T)
+      - 德国 (R)
+      - 英国 (T)
+      - 英国 (R)
+      - 印度 (T)
+      - 印度 (R)
+      - 乌克兰 (T)
+      - 乌克兰 (R)
+      - 魔法节点 (T) ᴮᴬᴷ
+      - 魔法节点 (R) ᴮᴬᴷ
+      - 香港 优选(T) ᴮᴬᴷ
+      - 香港 优选(R) ᴮᴬᴷ
+      - 香港 01(T) ᴮᴬᴷ
+      - 香港 01(R) ᴮᴬᴷ
+      - 香港 02(T) ᴮᴬᴷ
+      - 香港 02(R) ᴮᴬᴷ
+      - 香港 03(T) ᴮᴬᴷ
+      - 香港 03(R) ᴮᴬᴷ
+      - 香港 04(T) ᴮᴬᴷ
+      - 香港 04(R) ᴮᴬᴷ
+      - 香港 05(T) ᴮᴬᴷ
+      - 香港 05(R) ᴮᴬᴷ
+      - 香港 06(T) ᴮᴬᴷ
+      - 香港 06(R) ᴮᴬᴷ
+      - 香港 07(T) ᴮᴬᴷ
+      - 香港 07(R) ᴮᴬᴷ
+      - 香港 99(T) ᴮᴬᴷ
+      - 香港 99(R) ᴮᴬᴷ
+      - 美国 优选(T) ᴮᴬᴷ
+      - 美国 优选(R) ᴮᴬᴷ
+      - 美国 01(T) ᴮᴬᴷ
+      - 美国 01(R) ᴮᴬᴷ
+      - 美国 02(T) ᴮᴬᴷ
+      - 美国 02(R) ᴮᴬᴷ
+      - 美国 03(T) ᴮᴬᴷ
+      - 美国 03(R) ᴮᴬᴷ
+      - 美国 04(T) ᴮᴬᴷ
+      - 美国 04(R) ᴮᴬᴷ
+      - 美国 05(T) ᴮᴬᴷ
+      - 美国 05(R) ᴮᴬᴷ
+      - 美国 06(T) ᴮᴬᴷ
+      - 美国 06(R) ᴮᴬᴷ
+      - 美国 99(T) ᴮᴬᴷ
+      - 美国 99(R) ᴮᴬᴷ
+      - 日本 优选(T) ᴮᴬᴷ
+      - 日本 优选(R) ᴮᴬᴷ
+      - 日本 01(T) ᴮᴬᴷ
+      - 日本 01(R) ᴮᴬᴷ
+      - 日本 02(T) ᴮᴬᴷ
+      - 日本 02(R) ᴮᴬᴷ
+      - 日本 03(T) ᴮᴬᴷ
+      - 日本 03(R) ᴮᴬᴷ
+      - 日本 04(T) ᴮᴬᴷ
+      - 日本 04(R) ᴮᴬᴷ
+      - 日本 99(T) ᴮᴬᴷ
+      - 日本 99(R) ᴮᴬᴷ
+      - 韩国 优选(T) ᴮᴬᴷ
+      - 韩国 优选(R) ᴮᴬᴷ
+      - 韩国 01(T) ᴮᴬᴷ
+      - 韩国 01(R) ᴮᴬᴷ
+      - 韩国 02(T) ᴮᴬᴷ
+      - 韩国 02(R) ᴮᴬᴷ
+      - 韩国 03(T) ᴮᴬᴷ
+      - 韩国 03(R) ᴮᴬᴷ
+      - 新加坡 优选(T) ᴮᴬᴷ
+      - 新加坡 优选(R) ᴮᴬᴷ
+      - 新加坡 01(T) ᴮᴬᴷ
+      - 新加坡 01(R) ᴮᴬᴷ
+      - 新加坡 02(T) ᴮᴬᴷ
+      - 新加坡 02(R) ᴮᴬᴷ
+      - 新加坡 03(T) ᴮᴬᴷ
+      - 新加坡 03(R) ᴮᴬᴷ
+      - 新加坡 04(T) ᴮᴬᴷ
+      - 新加坡 04(R) ᴮᴬᴷ
+      - 新加坡 05(T) ᴮᴬᴷ
+      - 新加坡 05(R) ᴮᴬᴷ
+      - 新加坡 99(T) ᴮᴬᴷ
+      - 新加坡 99(R) ᴮᴬᴷ
+      - 台湾 优选(T) ᴮᴬᴷ
+      - 台湾 优选(R) ᴮᴬᴷ
+      - 台湾 01(T) ᴮᴬᴷ
+      - 台湾 01(R) ᴮᴬᴷ
+      - 台湾 02(T) ᴮᴬᴷ
+      - 台湾 02(R) ᴮᴬᴷ
+      - 台湾 03(T) ᴮᴬᴷ
+      - 台湾 03(R) ᴮᴬᴷ
+      - 台湾 04(T) ᴮᴬᴷ
+      - 台湾 04(R) ᴮᴬᴷ
+      - 台湾 05(T) ᴮᴬᴷ
+      - 台湾 05(R) ᴮᴬᴷ
+      - 台湾 99(T) ᴮᴬᴷ
+      - 台湾 99(R) ᴮᴬᴷ
+      - 加拿大 01(T) ᴮᴬᴷ
+      - 加拿大 01(R) ᴮᴬᴷ
+      - 哈萨克斯坦 (T) ᴮᴬᴷ
+      - 哈萨克斯坦 (R) ᴮᴬᴷ
+      - 澳大利亚 (T) ᴮᴬᴷ
+      - 澳大利亚 (R) ᴮᴬᴷ
+      - 保加利亚 (T) ᴮᴬᴷ
+      - 保加利亚 (R) ᴮᴬᴷ
+      - 格鲁吉亚 (T) ᴮᴬᴷ
+      - 格鲁吉亚 (R) ᴮᴬᴷ
+      - 立陶宛 (T) ᴮᴬᴷ
+      - 立陶宛 (R) ᴮᴬᴷ
+      - 捷克 (T) ᴮᴬᴷ
+      - 捷克 (R) ᴮᴬᴷ
+      - 俄罗斯 (T) ᴮᴬᴷ
+      - 俄罗斯 (R) ᴮᴬᴷ
+      - 南非 (T) ᴮᴬᴷ
+      - 南非 (R) ᴮᴬᴷ
+      - 芬兰 (T) ᴮᴬᴷ
+      - 芬兰 (R) ᴮᴬᴷ
+      - 瑞士 (T) ᴮᴬᴷ
+      - 瑞士 (R) ᴮᴬᴷ
+      - 亚美尼亚 (T) ᴮᴬᴷ
+      - 亚美尼亚 (R) ᴮᴬᴷ
+      - 马来西亚 (T) ᴮᴬᴷ
+      - 马来西亚 (R) ᴮᴬᴷ
+      - 墨西哥 (T) ᴮᴬᴷ
+      - 墨西哥 (R) ᴮᴬᴷ
+      - 印度尼西亚 (T) ᴮᴬᴷ
+      - 印度尼西亚 (R) ᴮᴬᴷ
+      - 孟加拉国 (T) ᴮᴬᴷ
+      - 孟加拉国 (R) ᴮᴬᴷ
+      - 瑞典 (T) ᴮᴬᴷ
+      - 瑞典 (R) ᴮᴬᴷ
+      - 比利时 (T) ᴮᴬᴷ
+      - 比利时 (R) ᴮᴬᴷ
+      - 葡萄牙 (T) ᴮᴬᴷ
+      - 葡萄牙 (R) ᴮᴬᴷ
+      - 阿联酋 (T) ᴮᴬᴷ
+      - 阿联酋 (R) ᴮᴬᴷ
+      - 法国 (T) ᴮᴬᴷ
+      - 法国 (R) ᴮᴬᴷ
+      - 波兰 (T) ᴮᴬᴷ
+      - 波兰 (R) ᴮᴬᴷ
+      - 拉脱维亚 (T) ᴮᴬᴷ
+      - 拉脱维亚 (R) ᴮᴬᴷ
+      - 荷兰 (T) ᴮᴬᴷ
+      - 荷兰 (R) ᴮᴬᴷ
+      - 罗马尼亚 (T) ᴮᴬᴷ
+      - 罗马尼亚 (R) ᴮᴬᴷ
+      - 奥地利 (T) ᴮᴬᴷ
+      - 奥地利 (R) ᴮᴬᴷ
+      - 巴西 (T) ᴮᴬᴷ
+      - 巴西 (R) ᴮᴬᴷ
+      - 土耳其 (T) ᴮᴬᴷ
+      - 土耳其 (R) ᴮᴬᴷ
+      - 以色列 (T) ᴮᴬᴷ
+      - 以色列 (R) ᴮᴬᴷ
+      - 意大利 (T) ᴮᴬᴷ
+      - 意大利 (R) ᴮᴬᴷ
+      - 西班牙 (T) ᴮᴬᴷ
+      - 西班牙 (R) ᴮᴬᴷ
+      - 泰国 (T) ᴮᴬᴷ
+      - 泰国 (R) ᴮᴬᴷ
+      - 德国 (T) ᴮᴬᴷ
+      - 德国 (R) ᴮᴬᴷ
+      - 英国 (T) ᴮᴬᴷ
+      - 英国 (R) ᴮᴬᴷ
+      - 印度 (T) ᴮᴬᴷ
+      - 印度 (R) ᴮᴬᴷ
+      - 乌克兰 (T) ᴮᴬᴷ
+      - 乌克兰 (R) ᴮᴬᴷ
+      - REJECT
+      - public
+      - public1
+  - type: select
+    name: 📲 电报消息
+    proxies:
+      - 🚀 节点选择
+      - 魔法节点 (T)
+      - 魔法节点 (R)
+      - 香港 优选(T)
+      - 香港 优选(R)
+      - 香港 01(T)
+      - 香港 01(R)
+      - 香港 02(T)
+      - 香港 02(R)
+      - 香港 03(T)
+      - 香港 03(R)
+      - 香港 04(T)
+      - 香港 04(R)
+      - 香港 05(T)
+      - 香港 05(R)
+      - 香港 06(T)
+      - 香港 06(R)
+      - 香港 07(T)
+      - 香港 07(R)
+      - 香港 99(T)
+      - 香港 99(R)
+      - 美国 优选(T)
+      - 美国 优选(R)
+      - 美国 01(T)
+      - 美国 01(R)
+      - 美国 02(T)
+      - 美国 02(R)
+      - 美国 03(T)
+      - 美国 03(R)
+      - 美国 04(T)
+      - 美国 04(R)
+      - 美国 05(T)
+      - 美国 05(R)
+      - 美国 06(T)
+      - 美国 06(R)
+      - 美国 99(T)
+      - 美国 99(R)
+      - 日本 优选(T)
+      - 日本 优选(R)
+      - 日本 01(T)
+      - 日本 01(R)
+      - 日本 02(T)
+      - 日本 02(R)
+      - 日本 03(T)
+      - 日本 03(R)
+      - 日本 04(T)
+      - 日本 04(R)
+      - 日本 99(T)
+      - 日本 99(R)
+      - 韩国 优选(T)
+      - 韩国 优选(R)
+      - 韩国 01(T)
+      - 韩国 01(R)
+      - 韩国 02(T)
+      - 韩国 02(R)
+      - 韩国 03(T)
+      - 韩国 03(R)
+      - 新加坡 优选(T)
+      - 新加坡 优选(R)
+      - 新加坡 01(T)
+      - 新加坡 01(R)
+      - 新加坡 02(T)
+      - 新加坡 02(R)
+      - 新加坡 03(T)
+      - 新加坡 03(R)
+      - 新加坡 04(T)
+      - 新加坡 04(R)
+      - 新加坡 05(T)
+      - 新加坡 05(R)
+      - 新加坡 99(T)
+      - 新加坡 99(R)
+      - 台湾 优选(T)
+      - 台湾 优选(R)
+      - 台湾 01(T)
+      - 台湾 01(R)
+      - 台湾 02(T)
+      - 台湾 02(R)
+      - 台湾 03(T)
+      - 台湾 03(R)
+      - 台湾 04(T)
+      - 台湾 04(R)
+      - 台湾 05(T)
+      - 台湾 05(R)
+      - 台湾 99(T)
+      - 台湾 99(R)
+      - 加拿大 01(T)
+      - 加拿大 01(R)
+      - 哈萨克斯坦 (T)
+      - 哈萨克斯坦 (R)
+      - 澳大利亚 (T)
+      - 澳大利亚 (R)
+      - 保加利亚 (T)
+      - 保加利亚 (R)
+      - 格鲁吉亚 (T)
+      - 格鲁吉亚 (R)
+      - 立陶宛 (T)
+      - 立陶宛 (R)
+      - 捷克 (T)
+      - 捷克 (R)
+      - 俄罗斯 (T)
+      - 俄罗斯 (R)
+      - 南非 (T)
+      - 南非 (R)
+      - 芬兰 (T)
+      - 芬兰 (R)
+      - 瑞士 (T)
+      - 瑞士 (R)
+      - 亚美尼亚 (T)
+      - 亚美尼亚 (R)
+      - 马来西亚 (T)
+      - 马来西亚 (R)
+      - 墨西哥 (T)
+      - 墨西哥 (R)
+      - 印度尼西亚 (T)
+      - 印度尼西亚 (R)
+      - 孟加拉国 (T)
+      - 孟加拉国 (R)
+      - 瑞典 (T)
+      - 瑞典 (R)
+      - 比利时 (T)
+      - 比利时 (R)
+      - 葡萄牙 (T)
+      - 葡萄牙 (R)
+      - 阿联酋 (T)
+      - 阿联酋 (R)
+      - 法国 (T)
+      - 法国 (R)
+      - 波兰 (T)
+      - 波兰 (R)
+      - 拉脱维亚 (T)
+      - 拉脱维亚 (R)
+      - 荷兰 (T)
+      - 荷兰 (R)
+      - 罗马尼亚 (T)
+      - 罗马尼亚 (R)
+      - 奥地利 (T)
+      - 奥地利 (R)
+      - 巴西 (T)
+      - 巴西 (R)
+      - 土耳其 (T)
+      - 土耳其 (R)
+      - 以色列 (T)
+      - 以色列 (R)
+      - 意大利 (T)
+      - 意大利 (R)
+      - 西班牙 (T)
+      - 西班牙 (R)
+      - 泰国 (T)
+      - 泰国 (R)
+      - 德国 (T)
+      - 德国 (R)
+      - 英国 (T)
+      - 英国 (R)
+      - 印度 (T)
+      - 印度 (R)
+      - 乌克兰 (T)
+      - 乌克兰 (R)
+      - 魔法节点 (T) ᴮᴬᴷ
+      - 魔法节点 (R) ᴮᴬᴷ
+      - 香港 优选(T) ᴮᴬᴷ
+      - 香港 优选(R) ᴮᴬᴷ
+      - 香港 01(T) ᴮᴬᴷ
+      - 香港 01(R) ᴮᴬᴷ
+      - 香港 02(T) ᴮᴬᴷ
+      - 香港 02(R) ᴮᴬᴷ
+      - 香港 03(T) ᴮᴬᴷ
+      - 香港 03(R) ᴮᴬᴷ
+      - 香港 04(T) ᴮᴬᴷ
+      - 香港 04(R) ᴮᴬᴷ
+      - 香港 05(T) ᴮᴬᴷ
+      - 香港 05(R) ᴮᴬᴷ
+      - 香港 06(T) ᴮᴬᴷ
+      - 香港 06(R) ᴮᴬᴷ
+      - 香港 07(T) ᴮᴬᴷ
+      - 香港 07(R) ᴮᴬᴷ
+      - 香港 99(T) ᴮᴬᴷ
+      - 香港 99(R) ᴮᴬᴷ
+      - 美国 优选(T) ᴮᴬᴷ
+      - 美国 优选(R) ᴮᴬᴷ
+      - 美国 01(T) ᴮᴬᴷ
+      - 美国 01(R) ᴮᴬᴷ
+      - 美国 02(T) ᴮᴬᴷ
+      - 美国 02(R) ᴮᴬᴷ
+      - 美国 03(T) ᴮᴬᴷ
+      - 美国 03(R) ᴮᴬᴷ
+      - 美国 04(T) ᴮᴬᴷ
+      - 美国 04(R) ᴮᴬᴷ
+      - 美国 05(T) ᴮᴬᴷ
+      - 美国 05(R) ᴮᴬᴷ
+      - 美国 06(T) ᴮᴬᴷ
+      - 美国 06(R) ᴮᴬᴷ
+      - 美国 99(T) ᴮᴬᴷ
+      - 美国 99(R) ᴮᴬᴷ
+      - 日本 优选(T) ᴮᴬᴷ
+      - 日本 优选(R) ᴮᴬᴷ
+      - 日本 01(T) ᴮᴬᴷ
+      - 日本 01(R) ᴮᴬᴷ
+      - 日本 02(T) ᴮᴬᴷ
+      - 日本 02(R) ᴮᴬᴷ
+      - 日本 03(T) ᴮᴬᴷ
+      - 日本 03(R) ᴮᴬᴷ
+      - 日本 04(T) ᴮᴬᴷ
+      - 日本 04(R) ᴮᴬᴷ
+      - 日本 99(T) ᴮᴬᴷ
+      - 日本 99(R) ᴮᴬᴷ
+      - 韩国 优选(T) ᴮᴬᴷ
+      - 韩国 优选(R) ᴮᴬᴷ
+      - 韩国 01(T) ᴮᴬᴷ
+      - 韩国 01(R) ᴮᴬᴷ
+      - 韩国 02(T) ᴮᴬᴷ
+      - 韩国 02(R) ᴮᴬᴷ
+      - 韩国 03(T) ᴮᴬᴷ
+      - 韩国 03(R) ᴮᴬᴷ
+      - 新加坡 优选(T) ᴮᴬᴷ
+      - 新加坡 优选(R) ᴮᴬᴷ
+      - 新加坡 01(T) ᴮᴬᴷ
+      - 新加坡 01(R) ᴮᴬᴷ
+      - 新加坡 02(T) ᴮᴬᴷ
+      - 新加坡 02(R) ᴮᴬᴷ
+      - 新加坡 03(T) ᴮᴬᴷ
+      - 新加坡 03(R) ᴮᴬᴷ
+      - 新加坡 04(T) ᴮᴬᴷ
+      - 新加坡 04(R) ᴮᴬᴷ
+      - 新加坡 05(T) ᴮᴬᴷ
+      - 新加坡 05(R) ᴮᴬᴷ
+      - 新加坡 99(T) ᴮᴬᴷ
+      - 新加坡 99(R) ᴮᴬᴷ
+      - 台湾 优选(T) ᴮᴬᴷ
+      - 台湾 优选(R) ᴮᴬᴷ
+      - 台湾 01(T) ᴮᴬᴷ
+      - 台湾 01(R) ᴮᴬᴷ
+      - 台湾 02(T) ᴮᴬᴷ
+      - 台湾 02(R) ᴮᴬᴷ
+      - 台湾 03(T) ᴮᴬᴷ
+      - 台湾 03(R) ᴮᴬᴷ
+      - 台湾 04(T) ᴮᴬᴷ
+      - 台湾 04(R) ᴮᴬᴷ
+      - 台湾 05(T) ᴮᴬᴷ
+      - 台湾 05(R) ᴮᴬᴷ
+      - 台湾 99(T) ᴮᴬᴷ
+      - 台湾 99(R) ᴮᴬᴷ
+      - 加拿大 01(T) ᴮᴬᴷ
+      - 加拿大 01(R) ᴮᴬᴷ
+      - 哈萨克斯坦 (T) ᴮᴬᴷ
+      - 哈萨克斯坦 (R) ᴮᴬᴷ
+      - 澳大利亚 (T) ᴮᴬᴷ
+      - 澳大利亚 (R) ᴮᴬᴷ
+      - 保加利亚 (T) ᴮᴬᴷ
+      - 保加利亚 (R) ᴮᴬᴷ
+      - 格鲁吉亚 (T) ᴮᴬᴷ
+      - 格鲁吉亚 (R) ᴮᴬᴷ
+      - 立陶宛 (T) ᴮᴬᴷ
+      - 立陶宛 (R) ᴮᴬᴷ
+      - 捷克 (T) ᴮᴬᴷ
+      - 捷克 (R) ᴮᴬᴷ
+      - 俄罗斯 (T) ᴮᴬᴷ
+      - 俄罗斯 (R) ᴮᴬᴷ
+      - 南非 (T) ᴮᴬᴷ
+      - 南非 (R) ᴮᴬᴷ
+      - 芬兰 (T) ᴮᴬᴷ
+      - 芬兰 (R) ᴮᴬᴷ
+      - 瑞士 (T) ᴮᴬᴷ
+      - 瑞士 (R) ᴮᴬᴷ
+      - 亚美尼亚 (T) ᴮᴬᴷ
+      - 亚美尼亚 (R) ᴮᴬᴷ
+      - 马来西亚 (T) ᴮᴬᴷ
+      - 马来西亚 (R) ᴮᴬᴷ
+      - 墨西哥 (T) ᴮᴬᴷ
+      - 墨西哥 (R) ᴮᴬᴷ
+      - 印度尼西亚 (T) ᴮᴬᴷ
+      - 印度尼西亚 (R) ᴮᴬᴷ
+      - 孟加拉国 (T) ᴮᴬᴷ
+      - 孟加拉国 (R) ᴮᴬᴷ
+      - 瑞典 (T) ᴮᴬᴷ
+      - 瑞典 (R) ᴮᴬᴷ
+      - 比利时 (T) ᴮᴬᴷ
+      - 比利时 (R) ᴮᴬᴷ
+      - 葡萄牙 (T) ᴮᴬᴷ
+      - 葡萄牙 (R) ᴮᴬᴷ
+      - 阿联酋 (T) ᴮᴬᴷ
+      - 阿联酋 (R) ᴮᴬᴷ
+      - 法国 (T) ᴮᴬᴷ
+      - 法国 (R) ᴮᴬᴷ
+      - 波兰 (T) ᴮᴬᴷ
+      - 波兰 (R) ᴮᴬᴷ
+      - 拉脱维亚 (T) ᴮᴬᴷ
+      - 拉脱维亚 (R) ᴮᴬᴷ
+      - 荷兰 (T) ᴮᴬᴷ
+      - 荷兰 (R) ᴮᴬᴷ
+      - 罗马尼亚 (T) ᴮᴬᴷ
+      - 罗马尼亚 (R) ᴮᴬᴷ
+      - 奥地利 (T) ᴮᴬᴷ
+      - 奥地利 (R) ᴮᴬᴷ
+      - 巴西 (T) ᴮᴬᴷ
+      - 巴西 (R) ᴮᴬᴷ
+      - 土耳其 (T) ᴮᴬᴷ
+      - 土耳其 (R) ᴮᴬᴷ
+      - 以色列 (T) ᴮᴬᴷ
+      - 以色列 (R) ᴮᴬᴷ
+      - 意大利 (T) ᴮᴬᴷ
+      - 意大利 (R) ᴮᴬᴷ
+      - 西班牙 (T) ᴮᴬᴷ
+      - 西班牙 (R) ᴮᴬᴷ
+      - 泰国 (T) ᴮᴬᴷ
+      - 泰国 (R) ᴮᴬᴷ
+      - 德国 (T) ᴮᴬᴷ
+      - 德国 (R) ᴮᴬᴷ
+      - 英国 (T) ᴮᴬᴷ
+      - 英国 (R) ᴮᴬᴷ
+      - 印度 (T) ᴮᴬᴷ
+      - 印度 (R) ᴮᴬᴷ
+      - 乌克兰 (T) ᴮᴬᴷ
+      - 乌克兰 (R) ᴮᴬᴷ
+      - DIRECT
+      - REJECT
+      - public
+      - public1
+  - type: select
+    name: 🐱 Github
+    proxies:
+      - 🚀 节点选择
+      - 魔法节点 (T)
+      - 魔法节点 (R)
+      - 香港 优选(T)
+      - 香港 优选(R)
+      - 香港 01(T)
+      - 香港 01(R)
+      - 香港 02(T)
+      - 香港 02(R)
+      - 香港 03(T)
+      - 香港 03(R)
+      - 香港 04(T)
+      - 香港 04(R)
+      - 香港 05(T)
+      - 香港 05(R)
+      - 香港 06(T)
+      - 香港 06(R)
+      - 香港 07(T)
+      - 香港 07(R)
+      - 香港 99(T)
+      - 香港 99(R)
+      - 美国 优选(T)
+      - 美国 优选(R)
+      - 美国 01(T)
+      - 美国 01(R)
+      - 美国 02(T)
+      - 美国 02(R)
+      - 美国 03(T)
+      - 美国 03(R)
+      - 美国 04(T)
+      - 美国 04(R)
+      - 美国 05(T)
+      - 美国 05(R)
+      - 美国 06(T)
+      - 美国 06(R)
+      - 美国 99(T)
+      - 美国 99(R)
+      - 日本 优选(T)
+      - 日本 优选(R)
+      - 日本 01(T)
+      - 日本 01(R)
+      - 日本 02(T)
+      - 日本 02(R)
+      - 日本 03(T)
+      - 日本 03(R)
+      - 日本 04(T)
+      - 日本 04(R)
+      - 日本 99(T)
+      - 日本 99(R)
+      - 韩国 优选(T)
+      - 韩国 优选(R)
+      - 韩国 01(T)
+      - 韩国 01(R)
+      - 韩国 02(T)
+      - 韩国 02(R)
+      - 韩国 03(T)
+      - 韩国 03(R)
+      - 新加坡 优选(T)
+      - 新加坡 优选(R)
+      - 新加坡 01(T)
+      - 新加坡 01(R)
+      - 新加坡 02(T)
+      - 新加坡 02(R)
+      - 新加坡 03(T)
+      - 新加坡 03(R)
+      - 新加坡 04(T)
+      - 新加坡 04(R)
+      - 新加坡 05(T)
+      - 新加坡 05(R)
+      - 新加坡 99(T)
+      - 新加坡 99(R)
+      - 台湾 优选(T)
+      - 台湾 优选(R)
+      - 台湾 01(T)
+      - 台湾 01(R)
+      - 台湾 02(T)
+      - 台湾 02(R)
+      - 台湾 03(T)
+      - 台湾 03(R)
+      - 台湾 04(T)
+      - 台湾 04(R)
+      - 台湾 05(T)
+      - 台湾 05(R)
+      - 台湾 99(T)
+      - 台湾 99(R)
+      - 加拿大 01(T)
+      - 加拿大 01(R)
+      - 哈萨克斯坦 (T)
+      - 哈萨克斯坦 (R)
+      - 澳大利亚 (T)
+      - 澳大利亚 (R)
+      - 保加利亚 (T)
+      - 保加利亚 (R)
+      - 格鲁吉亚 (T)
+      - 格鲁吉亚 (R)
+      - 立陶宛 (T)
+      - 立陶宛 (R)
+      - 捷克 (T)
+      - 捷克 (R)
+      - 俄罗斯 (T)
+      - 俄罗斯 (R)
+      - 南非 (T)
+      - 南非 (R)
+      - 芬兰 (T)
+      - 芬兰 (R)
+      - 瑞士 (T)
+      - 瑞士 (R)
+      - 亚美尼亚 (T)
+      - 亚美尼亚 (R)
+      - 马来西亚 (T)
+      - 马来西亚 (R)
+      - 墨西哥 (T)
+      - 墨西哥 (R)
+      - 印度尼西亚 (T)
+      - 印度尼西亚 (R)
+      - 孟加拉国 (T)
+      - 孟加拉国 (R)
+      - 瑞典 (T)
+      - 瑞典 (R)
+      - 比利时 (T)
+      - 比利时 (R)
+      - 葡萄牙 (T)
+      - 葡萄牙 (R)
+      - 阿联酋 (T)
+      - 阿联酋 (R)
+      - 法国 (T)
+      - 法国 (R)
+      - 波兰 (T)
+      - 波兰 (R)
+      - 拉脱维亚 (T)
+      - 拉脱维亚 (R)
+      - 荷兰 (T)
+      - 荷兰 (R)
+      - 罗马尼亚 (T)
+      - 罗马尼亚 (R)
+      - 奥地利 (T)
+      - 奥地利 (R)
+      - 巴西 (T)
+      - 巴西 (R)
+      - 土耳其 (T)
+      - 土耳其 (R)
+      - 以色列 (T)
+      - 以色列 (R)
+      - 意大利 (T)
+      - 意大利 (R)
+      - 西班牙 (T)
+      - 西班牙 (R)
+      - 泰国 (T)
+      - 泰国 (R)
+      - 德国 (T)
+      - 德国 (R)
+      - 英国 (T)
+      - 英国 (R)
+      - 印度 (T)
+      - 印度 (R)
+      - 乌克兰 (T)
+      - 乌克兰 (R)
+      - 魔法节点 (T) ᴮᴬᴷ
+      - 魔法节点 (R) ᴮᴬᴷ
+      - 香港 优选(T) ᴮᴬᴷ
+      - 香港 优选(R) ᴮᴬᴷ
+      - 香港 01(T) ᴮᴬᴷ
+      - 香港 01(R) ᴮᴬᴷ
+      - 香港 02(T) ᴮᴬᴷ
+      - 香港 02(R) ᴮᴬᴷ
+      - 香港 03(T) ᴮᴬᴷ
+      - 香港 03(R) ᴮᴬᴷ
+      - 香港 04(T) ᴮᴬᴷ
+      - 香港 04(R) ᴮᴬᴷ
+      - 香港 05(T) ᴮᴬᴷ
+      - 香港 05(R) ᴮᴬᴷ
+      - 香港 06(T) ᴮᴬᴷ
+      - 香港 06(R) ᴮᴬᴷ
+      - 香港 07(T) ᴮᴬᴷ
+      - 香港 07(R) ᴮᴬᴷ
+      - 香港 99(T) ᴮᴬᴷ
+      - 香港 99(R) ᴮᴬᴷ
+      - 美国 优选(T) ᴮᴬᴷ
+      - 美国 优选(R) ᴮᴬᴷ
+      - 美国 01(T) ᴮᴬᴷ
+      - 美国 01(R) ᴮᴬᴷ
+      - 美国 02(T) ᴮᴬᴷ
+      - 美国 02(R) ᴮᴬᴷ
+      - 美国 03(T) ᴮᴬᴷ
+      - 美国 03(R) ᴮᴬᴷ
+      - 美国 04(T) ᴮᴬᴷ
+      - 美国 04(R) ᴮᴬᴷ
+      - 美国 05(T) ᴮᴬᴷ
+      - 美国 05(R) ᴮᴬᴷ
+      - 美国 06(T) ᴮᴬᴷ
+      - 美国 06(R) ᴮᴬᴷ
+      - 美国 99(T) ᴮᴬᴷ
+      - 美国 99(R) ᴮᴬᴷ
+      - 日本 优选(T) ᴮᴬᴷ
+      - 日本 优选(R) ᴮᴬᴷ
+      - 日本 01(T) ᴮᴬᴷ
+      - 日本 01(R) ᴮᴬᴷ
+      - 日本 02(T) ᴮᴬᴷ
+      - 日本 02(R) ᴮᴬᴷ
+      - 日本 03(T) ᴮᴬᴷ
+      - 日本 03(R) ᴮᴬᴷ
+      - 日本 04(T) ᴮᴬᴷ
+      - 日本 04(R) ᴮᴬᴷ
+      - 日本 99(T) ᴮᴬᴷ
+      - 日本 99(R) ᴮᴬᴷ
+      - 韩国 优选(T) ᴮᴬᴷ
+      - 韩国 优选(R) ᴮᴬᴷ
+      - 韩国 01(T) ᴮᴬᴷ
+      - 韩国 01(R) ᴮᴬᴷ
+      - 韩国 02(T) ᴮᴬᴷ
+      - 韩国 02(R) ᴮᴬᴷ
+      - 韩国 03(T) ᴮᴬᴷ
+      - 韩国 03(R) ᴮᴬᴷ
+      - 新加坡 优选(T) ᴮᴬᴷ
+      - 新加坡 优选(R) ᴮᴬᴷ
+      - 新加坡 01(T) ᴮᴬᴷ
+      - 新加坡 01(R) ᴮᴬᴷ
+      - 新加坡 02(T) ᴮᴬᴷ
+      - 新加坡 02(R) ᴮᴬᴷ
+      - 新加坡 03(T) ᴮᴬᴷ
+      - 新加坡 03(R) ᴮᴬᴷ
+      - 新加坡 04(T) ᴮᴬᴷ
+      - 新加坡 04(R) ᴮᴬᴷ
+      - 新加坡 05(T) ᴮᴬᴷ
+      - 新加坡 05(R) ᴮᴬᴷ
+      - 新加坡 99(T) ᴮᴬᴷ
+      - 新加坡 99(R) ᴮᴬᴷ
+      - 台湾 优选(T) ᴮᴬᴷ
+      - 台湾 优选(R) ᴮᴬᴷ
+      - 台湾 01(T) ᴮᴬᴷ
+      - 台湾 01(R) ᴮᴬᴷ
+      - 台湾 02(T) ᴮᴬᴷ
+      - 台湾 02(R) ᴮᴬᴷ
+      - 台湾 03(T) ᴮᴬᴷ
+      - 台湾 03(R) ᴮᴬᴷ
+      - 台湾 04(T) ᴮᴬᴷ
+      - 台湾 04(R) ᴮᴬᴷ
+      - 台湾 05(T) ᴮᴬᴷ
+      - 台湾 05(R) ᴮᴬᴷ
+      - 台湾 99(T) ᴮᴬᴷ
+      - 台湾 99(R) ᴮᴬᴷ
+      - 加拿大 01(T) ᴮᴬᴷ
+      - 加拿大 01(R) ᴮᴬᴷ
+      - 哈萨克斯坦 (T) ᴮᴬᴷ
+      - 哈萨克斯坦 (R) ᴮᴬᴷ
+      - 澳大利亚 (T) ᴮᴬᴷ
+      - 澳大利亚 (R) ᴮᴬᴷ
+      - 保加利亚 (T) ᴮᴬᴷ
+      - 保加利亚 (R) ᴮᴬᴷ
+      - 格鲁吉亚 (T) ᴮᴬᴷ
+      - 格鲁吉亚 (R) ᴮᴬᴷ
+      - 立陶宛 (T) ᴮᴬᴷ
+      - 立陶宛 (R) ᴮᴬᴷ
+      - 捷克 (T) ᴮᴬᴷ
+      - 捷克 (R) ᴮᴬᴷ
+      - 俄罗斯 (T) ᴮᴬᴷ
+      - 俄罗斯 (R) ᴮᴬᴷ
+      - 南非 (T) ᴮᴬᴷ
+      - 南非 (R) ᴮᴬᴷ
+      - 芬兰 (T) ᴮᴬᴷ
+      - 芬兰 (R) ᴮᴬᴷ
+      - 瑞士 (T) ᴮᴬᴷ
+      - 瑞士 (R) ᴮᴬᴷ
+      - 亚美尼亚 (T) ᴮᴬᴷ
+      - 亚美尼亚 (R) ᴮᴬᴷ
+      - 马来西亚 (T) ᴮᴬᴷ
+      - 马来西亚 (R) ᴮᴬᴷ
+      - 墨西哥 (T) ᴮᴬᴷ
+      - 墨西哥 (R) ᴮᴬᴷ
+      - 印度尼西亚 (T) ᴮᴬᴷ
+      - 印度尼西亚 (R) ᴮᴬᴷ
+      - 孟加拉国 (T) ᴮᴬᴷ
+      - 孟加拉国 (R) ᴮᴬᴷ
+      - 瑞典 (T) ᴮᴬᴷ
+      - 瑞典 (R) ᴮᴬᴷ
+      - 比利时 (T) ᴮᴬᴷ
+      - 比利时 (R) ᴮᴬᴷ
+      - 葡萄牙 (T) ᴮᴬᴷ
+      - 葡萄牙 (R) ᴮᴬᴷ
+      - 阿联酋 (T) ᴮᴬᴷ
+      - 阿联酋 (R) ᴮᴬᴷ
+      - 法国 (T) ᴮᴬᴷ
+      - 法国 (R) ᴮᴬᴷ
+      - 波兰 (T) ᴮᴬᴷ
+      - 波兰 (R) ᴮᴬᴷ
+      - 拉脱维亚 (T) ᴮᴬᴷ
+      - 拉脱维亚 (R) ᴮᴬᴷ
+      - 荷兰 (T) ᴮᴬᴷ
+      - 荷兰 (R) ᴮᴬᴷ
+      - 罗马尼亚 (T) ᴮᴬᴷ
+      - 罗马尼亚 (R) ᴮᴬᴷ
+      - 奥地利 (T) ᴮᴬᴷ
+      - 奥地利 (R) ᴮᴬᴷ
+      - 巴西 (T) ᴮᴬᴷ
+      - 巴西 (R) ᴮᴬᴷ
+      - 土耳其 (T) ᴮᴬᴷ
+      - 土耳其 (R) ᴮᴬᴷ
+      - 以色列 (T) ᴮᴬᴷ
+      - 以色列 (R) ᴮᴬᴷ
+      - 意大利 (T) ᴮᴬᴷ
+      - 意大利 (R) ᴮᴬᴷ
+      - 西班牙 (T) ᴮᴬᴷ
+      - 西班牙 (R) ᴮᴬᴷ
+      - 泰国 (T) ᴮᴬᴷ
+      - 泰国 (R) ᴮᴬᴷ
+      - 德国 (T) ᴮᴬᴷ
+      - 德国 (R) ᴮᴬᴷ
+      - 英国 (T) ᴮᴬᴷ
+      - 英国 (R) ᴮᴬᴷ
+      - 印度 (T) ᴮᴬᴷ
+      - 印度 (R) ᴮᴬᴷ
+      - 乌克兰 (T) ᴮᴬᴷ
+      - 乌克兰 (R) ᴮᴬᴷ
+      - DIRECT
+      - REJECT
+      - public
+      - public1
+  - type: select
+    name: 🌐 非中国
+    proxies:
+      - 🚀 节点选择
+      - 魔法节点 (T)
+      - 魔法节点 (R)
+      - 香港 优选(T)
+      - 香港 优选(R)
+      - 香港 01(T)
+      - 香港 01(R)
+      - 香港 02(T)
+      - 香港 02(R)
+      - 香港 03(T)
+      - 香港 03(R)
+      - 香港 04(T)
+      - 香港 04(R)
+      - 香港 05(T)
+      - 香港 05(R)
+      - 香港 06(T)
+      - 香港 06(R)
+      - 香港 07(T)
+      - 香港 07(R)
+      - 香港 99(T)
+      - 香港 99(R)
+      - 美国 优选(T)
+      - 美国 优选(R)
+      - 美国 01(T)
+      - 美国 01(R)
+      - 美国 02(T)
+      - 美国 02(R)
+      - 美国 03(T)
+      - 美国 03(R)
+      - 美国 04(T)
+      - 美国 04(R)
+      - 美国 05(T)
+      - 美国 05(R)
+      - 美国 06(T)
+      - 美国 06(R)
+      - 美国 99(T)
+      - 美国 99(R)
+      - 日本 优选(T)
+      - 日本 优选(R)
+      - 日本 01(T)
+      - 日本 01(R)
+      - 日本 02(T)
+      - 日本 02(R)
+      - 日本 03(T)
+      - 日本 03(R)
+      - 日本 04(T)
+      - 日本 04(R)
+      - 日本 99(T)
+      - 日本 99(R)
+      - 韩国 优选(T)
+      - 韩国 优选(R)
+      - 韩国 01(T)
+      - 韩国 01(R)
+      - 韩国 02(T)
+      - 韩国 02(R)
+      - 韩国 03(T)
+      - 韩国 03(R)
+      - 新加坡 优选(T)
+      - 新加坡 优选(R)
+      - 新加坡 01(T)
+      - 新加坡 01(R)
+      - 新加坡 02(T)
+      - 新加坡 02(R)
+      - 新加坡 03(T)
+      - 新加坡 03(R)
+      - 新加坡 04(T)
+      - 新加坡 04(R)
+      - 新加坡 05(T)
+      - 新加坡 05(R)
+      - 新加坡 99(T)
+      - 新加坡 99(R)
+      - 台湾 优选(T)
+      - 台湾 优选(R)
+      - 台湾 01(T)
+      - 台湾 01(R)
+      - 台湾 02(T)
+      - 台湾 02(R)
+      - 台湾 03(T)
+      - 台湾 03(R)
+      - 台湾 04(T)
+      - 台湾 04(R)
+      - 台湾 05(T)
+      - 台湾 05(R)
+      - 台湾 99(T)
+      - 台湾 99(R)
+      - 加拿大 01(T)
+      - 加拿大 01(R)
+      - 哈萨克斯坦 (T)
+      - 哈萨克斯坦 (R)
+      - 澳大利亚 (T)
+      - 澳大利亚 (R)
+      - 保加利亚 (T)
+      - 保加利亚 (R)
+      - 格鲁吉亚 (T)
+      - 格鲁吉亚 (R)
+      - 立陶宛 (T)
+      - 立陶宛 (R)
+      - 捷克 (T)
+      - 捷克 (R)
+      - 俄罗斯 (T)
+      - 俄罗斯 (R)
+      - 南非 (T)
+      - 南非 (R)
+      - 芬兰 (T)
+      - 芬兰 (R)
+      - 瑞士 (T)
+      - 瑞士 (R)
+      - 亚美尼亚 (T)
+      - 亚美尼亚 (R)
+      - 马来西亚 (T)
+      - 马来西亚 (R)
+      - 墨西哥 (T)
+      - 墨西哥 (R)
+      - 印度尼西亚 (T)
+      - 印度尼西亚 (R)
+      - 孟加拉国 (T)
+      - 孟加拉国 (R)
+      - 瑞典 (T)
+      - 瑞典 (R)
+      - 比利时 (T)
+      - 比利时 (R)
+      - 葡萄牙 (T)
+      - 葡萄牙 (R)
+      - 阿联酋 (T)
+      - 阿联酋 (R)
+      - 法国 (T)
+      - 法国 (R)
+      - 波兰 (T)
+      - 波兰 (R)
+      - 拉脱维亚 (T)
+      - 拉脱维亚 (R)
+      - 荷兰 (T)
+      - 荷兰 (R)
+      - 罗马尼亚 (T)
+      - 罗马尼亚 (R)
+      - 奥地利 (T)
+      - 奥地利 (R)
+      - 巴西 (T)
+      - 巴西 (R)
+      - 土耳其 (T)
+      - 土耳其 (R)
+      - 以色列 (T)
+      - 以色列 (R)
+      - 意大利 (T)
+      - 意大利 (R)
+      - 西班牙 (T)
+      - 西班牙 (R)
+      - 泰国 (T)
+      - 泰国 (R)
+      - 德国 (T)
+      - 德国 (R)
+      - 英国 (T)
+      - 英国 (R)
+      - 印度 (T)
+      - 印度 (R)
+      - 乌克兰 (T)
+      - 乌克兰 (R)
+      - 魔法节点 (T) ᴮᴬᴷ
+      - 魔法节点 (R) ᴮᴬᴷ
+      - 香港 优选(T) ᴮᴬᴷ
+      - 香港 优选(R) ᴮᴬᴷ
+      - 香港 01(T) ᴮᴬᴷ
+      - 香港 01(R) ᴮᴬᴷ
+      - 香港 02(T) ᴮᴬᴷ
+      - 香港 02(R) ᴮᴬᴷ
+      - 香港 03(T) ᴮᴬᴷ
+      - 香港 03(R) ᴮᴬᴷ
+      - 香港 04(T) ᴮᴬᴷ
+      - 香港 04(R) ᴮᴬᴷ
+      - 香港 05(T) ᴮᴬᴷ
+      - 香港 05(R) ᴮᴬᴷ
+      - 香港 06(T) ᴮᴬᴷ
+      - 香港 06(R) ᴮᴬᴷ
+      - 香港 07(T) ᴮᴬᴷ
+      - 香港 07(R) ᴮᴬᴷ
+      - 香港 99(T) ᴮᴬᴷ
+      - 香港 99(R) ᴮᴬᴷ
+      - 美国 优选(T) ᴮᴬᴷ
+      - 美国 优选(R) ᴮᴬᴷ
+      - 美国 01(T) ᴮᴬᴷ
+      - 美国 01(R) ᴮᴬᴷ
+      - 美国 02(T) ᴮᴬᴷ
+      - 美国 02(R) ᴮᴬᴷ
+      - 美国 03(T) ᴮᴬᴷ
+      - 美国 03(R) ᴮᴬᴷ
+      - 美国 04(T) ᴮᴬᴷ
+      - 美国 04(R) ᴮᴬᴷ
+      - 美国 05(T) ᴮᴬᴷ
+      - 美国 05(R) ᴮᴬᴷ
+      - 美国 06(T) ᴮᴬᴷ
+      - 美国 06(R) ᴮᴬᴷ
+      - 美国 99(T) ᴮᴬᴷ
+      - 美国 99(R) ᴮᴬᴷ
+      - 日本 优选(T) ᴮᴬᴷ
+      - 日本 优选(R) ᴮᴬᴷ
+      - 日本 01(T) ᴮᴬᴷ
+      - 日本 01(R) ᴮᴬᴷ
+      - 日本 02(T) ᴮᴬᴷ
+      - 日本 02(R) ᴮᴬᴷ
+      - 日本 03(T) ᴮᴬᴷ
+      - 日本 03(R) ᴮᴬᴷ
+      - 日本 04(T) ᴮᴬᴷ
+      - 日本 04(R) ᴮᴬᴷ
+      - 日本 99(T) ᴮᴬᴷ
+      - 日本 99(R) ᴮᴬᴷ
+      - 韩国 优选(T) ᴮᴬᴷ
+      - 韩国 优选(R) ᴮᴬᴷ
+      - 韩国 01(T) ᴮᴬᴷ
+      - 韩国 01(R) ᴮᴬᴷ
+      - 韩国 02(T) ᴮᴬᴷ
+      - 韩国 02(R) ᴮᴬᴷ
+      - 韩国 03(T) ᴮᴬᴷ
+      - 韩国 03(R) ᴮᴬᴷ
+      - 新加坡 优选(T) ᴮᴬᴷ
+      - 新加坡 优选(R) ᴮᴬᴷ
+      - 新加坡 01(T) ᴮᴬᴷ
+      - 新加坡 01(R) ᴮᴬᴷ
+      - 新加坡 02(T) ᴮᴬᴷ
+      - 新加坡 02(R) ᴮᴬᴷ
+      - 新加坡 03(T) ᴮᴬᴷ
+      - 新加坡 03(R) ᴮᴬᴷ
+      - 新加坡 04(T) ᴮᴬᴷ
+      - 新加坡 04(R) ᴮᴬᴷ
+      - 新加坡 05(T) ᴮᴬᴷ
+      - 新加坡 05(R) ᴮᴬᴷ
+      - 新加坡 99(T) ᴮᴬᴷ
+      - 新加坡 99(R) ᴮᴬᴷ
+      - 台湾 优选(T) ᴮᴬᴷ
+      - 台湾 优选(R) ᴮᴬᴷ
+      - 台湾 01(T) ᴮᴬᴷ
+      - 台湾 01(R) ᴮᴬᴷ
+      - 台湾 02(T) ᴮᴬᴷ
+      - 台湾 02(R) ᴮᴬᴷ
+      - 台湾 03(T) ᴮᴬᴷ
+      - 台湾 03(R) ᴮᴬᴷ
+      - 台湾 04(T) ᴮᴬᴷ
+      - 台湾 04(R) ᴮᴬᴷ
+      - 台湾 05(T) ᴮᴬᴷ
+      - 台湾 05(R) ᴮᴬᴷ
+      - 台湾 99(T) ᴮᴬᴷ
+      - 台湾 99(R) ᴮᴬᴷ
+      - 加拿大 01(T) ᴮᴬᴷ
+      - 加拿大 01(R) ᴮᴬᴷ
+      - 哈萨克斯坦 (T) ᴮᴬᴷ
+      - 哈萨克斯坦 (R) ᴮᴬᴷ
+      - 澳大利亚 (T) ᴮᴬᴷ
+      - 澳大利亚 (R) ᴮᴬᴷ
+      - 保加利亚 (T) ᴮᴬᴷ
+      - 保加利亚 (R) ᴮᴬᴷ
+      - 格鲁吉亚 (T) ᴮᴬᴷ
+      - 格鲁吉亚 (R) ᴮᴬᴷ
+      - 立陶宛 (T) ᴮᴬᴷ
+      - 立陶宛 (R) ᴮᴬᴷ
+      - 捷克 (T) ᴮᴬᴷ
+      - 捷克 (R) ᴮᴬᴷ
+      - 俄罗斯 (T) ᴮᴬᴷ
+      - 俄罗斯 (R) ᴮᴬᴷ
+      - 南非 (T) ᴮᴬᴷ
+      - 南非 (R) ᴮᴬᴷ
+      - 芬兰 (T) ᴮᴬᴷ
+      - 芬兰 (R) ᴮᴬᴷ
+      - 瑞士 (T) ᴮᴬᴷ
+      - 瑞士 (R) ᴮᴬᴷ
+      - 亚美尼亚 (T) ᴮᴬᴷ
+      - 亚美尼亚 (R) ᴮᴬᴷ
+      - 马来西亚 (T) ᴮᴬᴷ
+      - 马来西亚 (R) ᴮᴬᴷ
+      - 墨西哥 (T) ᴮᴬᴷ
+      - 墨西哥 (R) ᴮᴬᴷ
+      - 印度尼西亚 (T) ᴮᴬᴷ
+      - 印度尼西亚 (R) ᴮᴬᴷ
+      - 孟加拉国 (T) ᴮᴬᴷ
+      - 孟加拉国 (R) ᴮᴬᴷ
+      - 瑞典 (T) ᴮᴬᴷ
+      - 瑞典 (R) ᴮᴬᴷ
+      - 比利时 (T) ᴮᴬᴷ
+      - 比利时 (R) ᴮᴬᴷ
+      - 葡萄牙 (T) ᴮᴬᴷ
+      - 葡萄牙 (R) ᴮᴬᴷ
+      - 阿联酋 (T) ᴮᴬᴷ
+      - 阿联酋 (R) ᴮᴬᴷ
+      - 法国 (T) ᴮᴬᴷ
+      - 法国 (R) ᴮᴬᴷ
+      - 波兰 (T) ᴮᴬᴷ
+      - 波兰 (R) ᴮᴬᴷ
+      - 拉脱维亚 (T) ᴮᴬᴷ
+      - 拉脱维亚 (R) ᴮᴬᴷ
+      - 荷兰 (T) ᴮᴬᴷ
+      - 荷兰 (R) ᴮᴬᴷ
+      - 罗马尼亚 (T) ᴮᴬᴷ
+      - 罗马尼亚 (R) ᴮᴬᴷ
+      - 奥地利 (T) ᴮᴬᴷ
+      - 奥地利 (R) ᴮᴬᴷ
+      - 巴西 (T) ᴮᴬᴷ
+      - 巴西 (R) ᴮᴬᴷ
+      - 土耳其 (T) ᴮᴬᴷ
+      - 土耳其 (R) ᴮᴬᴷ
+      - 以色列 (T) ᴮᴬᴷ
+      - 以色列 (R) ᴮᴬᴷ
+      - 意大利 (T) ᴮᴬᴷ
+      - 意大利 (R) ᴮᴬᴷ
+      - 西班牙 (T) ᴮᴬᴷ
+      - 西班牙 (R) ᴮᴬᴷ
+      - 泰国 (T) ᴮᴬᴷ
+      - 泰国 (R) ᴮᴬᴷ
+      - 德国 (T) ᴮᴬᴷ
+      - 德国 (R) ᴮᴬᴷ
+      - 英国 (T) ᴮᴬᴷ
+      - 英国 (R) ᴮᴬᴷ
+      - 印度 (T) ᴮᴬᴷ
+      - 印度 (R) ᴮᴬᴷ
+      - 乌克兰 (T) ᴮᴬᴷ
+      - 乌克兰 (R) ᴮᴬᴷ
+      - DIRECT
+      - REJECT
+      - public
+      - public1
+  - type: select
+    name: 🐟 漏网之鱼
+    proxies:
+      - 🚀 节点选择
+      - 魔法节点 (T)
+      - 魔法节点 (R)
+      - 香港 优选(T)
+      - 香港 优选(R)
+      - 香港 01(T)
+      - 香港 01(R)
+      - 香港 02(T)
+      - 香港 02(R)
+      - 香港 03(T)
+      - 香港 03(R)
+      - 香港 04(T)
+      - 香港 04(R)
+      - 香港 05(T)
+      - 香港 05(R)
+      - 香港 06(T)
+      - 香港 06(R)
+      - 香港 07(T)
+      - 香港 07(R)
+      - 香港 99(T)
+      - 香港 99(R)
+      - 美国 优选(T)
+      - 美国 优选(R)
+      - 美国 01(T)
+      - 美国 01(R)
+      - 美国 02(T)
+      - 美国 02(R)
+      - 美国 03(T)
+      - 美国 03(R)
+      - 美国 04(T)
+      - 美国 04(R)
+      - 美国 05(T)
+      - 美国 05(R)
+      - 美国 06(T)
+      - 美国 06(R)
+      - 美国 99(T)
+      - 美国 99(R)
+      - 日本 优选(T)
+      - 日本 优选(R)
+      - 日本 01(T)
+      - 日本 01(R)
+      - 日本 02(T)
+      - 日本 02(R)
+      - 日本 03(T)
+      - 日本 03(R)
+      - 日本 04(T)
+      - 日本 04(R)
+      - 日本 99(T)
+      - 日本 99(R)
+      - 韩国 优选(T)
+      - 韩国 优选(R)
+      - 韩国 01(T)
+      - 韩国 01(R)
+      - 韩国 02(T)
+      - 韩国 02(R)
+      - 韩国 03(T)
+      - 韩国 03(R)
+      - 新加坡 优选(T)
+      - 新加坡 优选(R)
+      - 新加坡 01(T)
+      - 新加坡 01(R)
+      - 新加坡 02(T)
+      - 新加坡 02(R)
+      - 新加坡 03(T)
+      - 新加坡 03(R)
+      - 新加坡 04(T)
+      - 新加坡 04(R)
+      - 新加坡 05(T)
+      - 新加坡 05(R)
+      - 新加坡 99(T)
+      - 新加坡 99(R)
+      - 台湾 优选(T)
+      - 台湾 优选(R)
+      - 台湾 01(T)
+      - 台湾 01(R)
+      - 台湾 02(T)
+      - 台湾 02(R)
+      - 台湾 03(T)
+      - 台湾 03(R)
+      - 台湾 04(T)
+      - 台湾 04(R)
+      - 台湾 05(T)
+      - 台湾 05(R)
+      - 台湾 99(T)
+      - 台湾 99(R)
+      - 加拿大 01(T)
+      - 加拿大 01(R)
+      - 哈萨克斯坦 (T)
+      - 哈萨克斯坦 (R)
+      - 澳大利亚 (T)
+      - 澳大利亚 (R)
+      - 保加利亚 (T)
+      - 保加利亚 (R)
+      - 格鲁吉亚 (T)
+      - 格鲁吉亚 (R)
+      - 立陶宛 (T)
+      - 立陶宛 (R)
+      - 捷克 (T)
+      - 捷克 (R)
+      - 俄罗斯 (T)
+      - 俄罗斯 (R)
+      - 南非 (T)
+      - 南非 (R)
+      - 芬兰 (T)
+      - 芬兰 (R)
+      - 瑞士 (T)
+      - 瑞士 (R)
+      - 亚美尼亚 (T)
+      - 亚美尼亚 (R)
+      - 马来西亚 (T)
+      - 马来西亚 (R)
+      - 墨西哥 (T)
+      - 墨西哥 (R)
+      - 印度尼西亚 (T)
+      - 印度尼西亚 (R)
+      - 孟加拉国 (T)
+      - 孟加拉国 (R)
+      - 瑞典 (T)
+      - 瑞典 (R)
+      - 比利时 (T)
+      - 比利时 (R)
+      - 葡萄牙 (T)
+      - 葡萄牙 (R)
+      - 阿联酋 (T)
+      - 阿联酋 (R)
+      - 法国 (T)
+      - 法国 (R)
+      - 波兰 (T)
+      - 波兰 (R)
+      - 拉脱维亚 (T)
+      - 拉脱维亚 (R)
+      - 荷兰 (T)
+      - 荷兰 (R)
+      - 罗马尼亚 (T)
+      - 罗马尼亚 (R)
+      - 奥地利 (T)
+      - 奥地利 (R)
+      - 巴西 (T)
+      - 巴西 (R)
+      - 土耳其 (T)
+      - 土耳其 (R)
+      - 以色列 (T)
+      - 以色列 (R)
+      - 意大利 (T)
+      - 意大利 (R)
+      - 西班牙 (T)
+      - 西班牙 (R)
+      - 泰国 (T)
+      - 泰国 (R)
+      - 德国 (T)
+      - 德国 (R)
+      - 英国 (T)
+      - 英国 (R)
+      - 印度 (T)
+      - 印度 (R)
+      - 乌克兰 (T)
+      - 乌克兰 (R)
+      - 魔法节点 (T) ᴮᴬᴷ
+      - 魔法节点 (R) ᴮᴬᴷ
+      - 香港 优选(T) ᴮᴬᴷ
+      - 香港 优选(R) ᴮᴬᴷ
+      - 香港 01(T) ᴮᴬᴷ
+      - 香港 01(R) ᴮᴬᴷ
+      - 香港 02(T) ᴮᴬᴷ
+      - 香港 02(R) ᴮᴬᴷ
+      - 香港 03(T) ᴮᴬᴷ
+      - 香港 03(R) ᴮᴬᴷ
+      - 香港 04(T) ᴮᴬᴷ
+      - 香港 04(R) ᴮᴬᴷ
+      - 香港 05(T) ᴮᴬᴷ
+      - 香港 05(R) ᴮᴬᴷ
+      - 香港 06(T) ᴮᴬᴷ
+      - 香港 06(R) ᴮᴬᴷ
+      - 香港 07(T) ᴮᴬᴷ
+      - 香港 07(R) ᴮᴬᴷ
+      - 香港 99(T) ᴮᴬᴷ
+      - 香港 99(R) ᴮᴬᴷ
+      - 美国 优选(T) ᴮᴬᴷ
+      - 美国 优选(R) ᴮᴬᴷ
+      - 美国 01(T) ᴮᴬᴷ
+      - 美国 01(R) ᴮᴬᴷ
+      - 美国 02(T) ᴮᴬᴷ
+      - 美国 02(R) ᴮᴬᴷ
+      - 美国 03(T) ᴮᴬᴷ
+      - 美国 03(R) ᴮᴬᴷ
+      - 美国 04(T) ᴮᴬᴷ
+      - 美国 04(R) ᴮᴬᴷ
+      - 美国 05(T) ᴮᴬᴷ
+      - 美国 05(R) ᴮᴬᴷ
+      - 美国 06(T) ᴮᴬᴷ
+      - 美国 06(R) ᴮᴬᴷ
+      - 美国 99(T) ᴮᴬᴷ
+      - 美国 99(R) ᴮᴬᴷ
+      - 日本 优选(T) ᴮᴬᴷ
+      - 日本 优选(R) ᴮᴬᴷ
+      - 日本 01(T) ᴮᴬᴷ
+      - 日本 01(R) ᴮᴬᴷ
+      - 日本 02(T) ᴮᴬᴷ
+      - 日本 02(R) ᴮᴬᴷ
+      - 日本 03(T) ᴮᴬᴷ
+      - 日本 03(R) ᴮᴬᴷ
+      - 日本 04(T) ᴮᴬᴷ
+      - 日本 04(R) ᴮᴬᴷ
+      - 日本 99(T) ᴮᴬᴷ
+      - 日本 99(R) ᴮᴬᴷ
+      - 韩国 优选(T) ᴮᴬᴷ
+      - 韩国 优选(R) ᴮᴬᴷ
+      - 韩国 01(T) ᴮᴬᴷ
+      - 韩国 01(R) ᴮᴬᴷ
+      - 韩国 02(T) ᴮᴬᴷ
+      - 韩国 02(R) ᴮᴬᴷ
+      - 韩国 03(T) ᴮᴬᴷ
+      - 韩国 03(R) ᴮᴬᴷ
+      - 新加坡 优选(T) ᴮᴬᴷ
+      - 新加坡 优选(R) ᴮᴬᴷ
+      - 新加坡 01(T) ᴮᴬᴷ
+      - 新加坡 01(R) ᴮᴬᴷ
+      - 新加坡 02(T) ᴮᴬᴷ
+      - 新加坡 02(R) ᴮᴬᴷ
+      - 新加坡 03(T) ᴮᴬᴷ
+      - 新加坡 03(R) ᴮᴬᴷ
+      - 新加坡 04(T) ᴮᴬᴷ
+      - 新加坡 04(R) ᴮᴬᴷ
+      - 新加坡 05(T) ᴮᴬᴷ
+      - 新加坡 05(R) ᴮᴬᴷ
+      - 新加坡 99(T) ᴮᴬᴷ
+      - 新加坡 99(R) ᴮᴬᴷ
+      - 台湾 优选(T) ᴮᴬᴷ
+      - 台湾 优选(R) ᴮᴬᴷ
+      - 台湾 01(T) ᴮᴬᴷ
+      - 台湾 01(R) ᴮᴬᴷ
+      - 台湾 02(T) ᴮᴬᴷ
+      - 台湾 02(R) ᴮᴬᴷ
+      - 台湾 03(T) ᴮᴬᴷ
+      - 台湾 03(R) ᴮᴬᴷ
+      - 台湾 04(T) ᴮᴬᴷ
+      - 台湾 04(R) ᴮᴬᴷ
+      - 台湾 05(T) ᴮᴬᴷ
+      - 台湾 05(R) ᴮᴬᴷ
+      - 台湾 99(T) ᴮᴬᴷ
+      - 台湾 99(R) ᴮᴬᴷ
+      - 加拿大 01(T) ᴮᴬᴷ
+      - 加拿大 01(R) ᴮᴬᴷ
+      - 哈萨克斯坦 (T) ᴮᴬᴷ
+      - 哈萨克斯坦 (R) ᴮᴬᴷ
+      - 澳大利亚 (T) ᴮᴬᴷ
+      - 澳大利亚 (R) ᴮᴬᴷ
+      - 保加利亚 (T) ᴮᴬᴷ
+      - 保加利亚 (R) ᴮᴬᴷ
+      - 格鲁吉亚 (T) ᴮᴬᴷ
+      - 格鲁吉亚 (R) ᴮᴬᴷ
+      - 立陶宛 (T) ᴮᴬᴷ
+      - 立陶宛 (R) ᴮᴬᴷ
+      - 捷克 (T) ᴮᴬᴷ
+      - 捷克 (R) ᴮᴬᴷ
+      - 俄罗斯 (T) ᴮᴬᴷ
+      - 俄罗斯 (R) ᴮᴬᴷ
+      - 南非 (T) ᴮᴬᴷ
+      - 南非 (R) ᴮᴬᴷ
+      - 芬兰 (T) ᴮᴬᴷ
+      - 芬兰 (R) ᴮᴬᴷ
+      - 瑞士 (T) ᴮᴬᴷ
+      - 瑞士 (R) ᴮᴬᴷ
+      - 亚美尼亚 (T) ᴮᴬᴷ
+      - 亚美尼亚 (R) ᴮᴬᴷ
+      - 马来西亚 (T) ᴮᴬᴷ
+      - 马来西亚 (R) ᴮᴬᴷ
+      - 墨西哥 (T) ᴮᴬᴷ
+      - 墨西哥 (R) ᴮᴬᴷ
+      - 印度尼西亚 (T) ᴮᴬᴷ
+      - 印度尼西亚 (R) ᴮᴬᴷ
+      - 孟加拉国 (T) ᴮᴬᴷ
+      - 孟加拉国 (R) ᴮᴬᴷ
+      - 瑞典 (T) ᴮᴬᴷ
+      - 瑞典 (R) ᴮᴬᴷ
+      - 比利时 (T) ᴮᴬᴷ
+      - 比利时 (R) ᴮᴬᴷ
+      - 葡萄牙 (T) ᴮᴬᴷ
+      - 葡萄牙 (R) ᴮᴬᴷ
+      - 阿联酋 (T) ᴮᴬᴷ
+      - 阿联酋 (R) ᴮᴬᴷ
+      - 法国 (T) ᴮᴬᴷ
+      - 法国 (R) ᴮᴬᴷ
+      - 波兰 (T) ᴮᴬᴷ
+      - 波兰 (R) ᴮᴬᴷ
+      - 拉脱维亚 (T) ᴮᴬᴷ
+      - 拉脱维亚 (R) ᴮᴬᴷ
+      - 荷兰 (T) ᴮᴬᴷ
+      - 荷兰 (R) ᴮᴬᴷ
+      - 罗马尼亚 (T) ᴮᴬᴷ
+      - 罗马尼亚 (R) ᴮᴬᴷ
+      - 奥地利 (T) ᴮᴬᴷ
+      - 奥地利 (R) ᴮᴬᴷ
+      - 巴西 (T) ᴮᴬᴷ
+      - 巴西 (R) ᴮᴬᴷ
+      - 土耳其 (T) ᴮᴬᴷ
+      - 土耳其 (R) ᴮᴬᴷ
+      - 以色列 (T) ᴮᴬᴷ
+      - 以色列 (R) ᴮᴬᴷ
+      - 意大利 (T) ᴮᴬᴷ
+      - 意大利 (R) ᴮᴬᴷ
+      - 西班牙 (T) ᴮᴬᴷ
+      - 西班牙 (R) ᴮᴬᴷ
+      - 泰国 (T) ᴮᴬᴷ
+      - 泰国 (R) ᴮᴬᴷ
+      - 德国 (T) ᴮᴬᴷ
+      - 德国 (R) ᴮᴬᴷ
+      - 英国 (T) ᴮᴬᴷ
+      - 英国 (R) ᴮᴬᴷ
+      - 印度 (T) ᴮᴬᴷ
+      - 印度 (R) ᴮᴬᴷ
+      - 乌克兰 (T) ᴮᴬᴷ
+      - 乌克兰 (R) ᴮᴬᴷ
+      - DIRECT
+      - REJECT
+rules:
+  - RULE-SET,category-ai-!cn,💬 AI 服务
+  - RULE-SET,youtube,📹 油管视频
+  - RULE-SET,google,🔍 谷歌服务
+  - RULE-SET,geolocation-cn,🔒 国内服务
+  - RULE-SET,cn,🔒 国内服务
+  - RULE-SET,github,🐱 Github
+  - RULE-SET,gitlab,🐱 Github
+  - RULE-SET,geolocation-!cn,🌐 非中国
+  - RULE-SET,google,🔍 谷歌服务,no-resolve
+  - RULE-SET,private,🏠 私有网络,no-resolve
+  - RULE-SET,cn,🔒 国内服务,no-resolve
+  - RULE-SET,telegram,📲 电报消息,no-resolve
+  - MATCH,🐟 漏网之鱼
